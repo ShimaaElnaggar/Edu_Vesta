@@ -1,5 +1,5 @@
 import 'package:edu_vesta/utils/color_utility.dart';
-import 'package:edu_vesta/views/On%20Boarding/on_boarding.dart';
+import 'package:edu_vesta/views/Splash/splash_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: ColorUtility.scaffoldBackground,
         ),
 
-      home: const OnBoarding(),
+      home: const SplashView(),
     );
   }
 }
