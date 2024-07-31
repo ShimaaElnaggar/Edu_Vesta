@@ -1,3 +1,4 @@
+import 'package:edu_vesta/utils/color_utility.dart';
 import 'package:edu_vesta/views/On%20Boarding/on_boarding.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,8 @@ class MyApp extends StatelessWidget {
       title: ' Edu Vesta ',
       theme: ThemeData(
         fontFamily:'PlusJakartaSans',
+        colorScheme: ColorScheme.fromSeed(seedColor: ColorUtility.primary),
+        scaffoldBackgroundColor: ColorUtility.scaffoldBackground,
         ),
 
       home: const OnBoarding(),
