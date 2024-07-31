@@ -45,9 +45,7 @@ class OnBoardingContent extends StatelessWidget {
             color: ColorUtility.grey,
           ),
         ),
-        const SizedBox(
-          height: 50,
-        ),
+
       ],
     );
   }
