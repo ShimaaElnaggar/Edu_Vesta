@@ -1,4 +1,5 @@
 
+import 'package:edu_vesta/utils/color_utility.dart';
 import 'package:flutter/material.dart';
 
 class DotsIndicator extends StatelessWidget {
@@ -14,11 +15,11 @@ class DotsIndicator extends StatelessWidget {
       padding: const EdgeInsets.all(2.0),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
-        height: 5,
-        width: 20,
+        height: 7,
+        width: 25,
         decoration: BoxDecoration(
           borderRadius:BorderRadius.circular(20),
-          color: isActive ? Theme.of(context).primaryColor : Colors.black,
+          color: isActive ? ColorUtility.secondary: Colors.black,
         ),
       ),
     );
