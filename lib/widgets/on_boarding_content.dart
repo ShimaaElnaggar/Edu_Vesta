@@ -13,13 +13,12 @@ class OnBoardingContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Center(
-          child: Image.asset(
-            image,
-            height: 200,
-          ),
+        Image.asset(
+          image,
+          height: 200,
         ),
         const SizedBox(
           height: 30,
@@ -45,7 +44,6 @@ class OnBoardingContent extends StatelessWidget {
             color: ColorUtility.grey,
           ),
         ),
-
       ],
     );
   }

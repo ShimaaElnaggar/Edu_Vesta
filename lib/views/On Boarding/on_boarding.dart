@@ -1,9 +1,9 @@
 import 'package:edu_vesta/models/on_board.dart';
 import 'package:edu_vesta/utils/color_utility.dart';
-import 'package:edu_vesta/views/Home/home_view.dart';
 import 'package:edu_vesta/widgets/dots_indicator.dart';
 import 'package:edu_vesta/widgets/on_board_arrows.dart';
 import 'package:edu_vesta/widgets/on_boarding_content.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class OnBoarding extends StatefulWidget {
@@ -66,101 +66,113 @@ class _OnBoardingState extends State<OnBoarding> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child:
-            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const HomeView()),
-                  );
-                },
-                child: const Text(
-                  'Skip',
-                  style: TextStyle(
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w400,
-                      color: Color(0xff3A3A3A)),
-                ),
-              ),
-            ],
-          ),
-          Expanded(
-            child: PageView.builder(
-                controller: pageController,
-                onPageChanged: (index) {
-                  setState(() {
-                    pageIndex = index;
-                  });
-                },
-                itemCount: demoData.length,
-                itemBuilder: (context, index) {
-                  return OnBoardingContent(
-                    image: demoData[index].image,
-                    title: demoData[index].title,
-                    description: demoData[index].description,
-                  );
-                }),
-          ),
-          //const SizedBox(height: 40,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ...List.generate(
-                demoData.length,
-                (index) => Center(
-                  child: DotsIndicator(
-                    isActive: index == pageIndex,
+          body: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: pageIndex == demoData.length - 1 ? const SizedBox.shrink() : Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          pageController.jumpToPage(demoData.length - 1);
+                        },
+                        child: const Text(
+                          'Skip',
+                          style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xff3A3A3A)),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 70,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                OnBoardArrows(
-                  onPressed: () {
-                    if (pageIndex > 0) {
-                      pageController.previousPage(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.ease);
-                    }
-                  },
-                  icon: Icons.arrow_back,
-                  color: pageIndex == 0 ? Colors.grey : ColorUtility.secondary,
+                kIsWeb ? const SizedBox(height: 40,) : const SizedBox(height: 50,),
+                Expanded(
+                  flex: 3,
+                  child: PageView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                      controller: pageController,
+                      onPageChanged: (index) {
+                        setState(() {
+                          pageIndex = index;
+                        });
+                      },
+                      itemCount: demoData.length,
+                      itemBuilder: (context, index) {
+                        return OnBoardingContent(
+                          image: demoData[index].image,
+                          title: demoData[index].title,
+                          description: demoData[index].description,
+                        );
+                      }),
                 ),
-                OnBoardArrows(
-                  onPressed: () {
-                    if (pageIndex < demoData.length - 1) {
-                      pageController.nextPage(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.ease);
-                    }
-                  },
-                  icon: Icons.arrow_forward,
-                  color: pageIndex == demoData.length - 1
-                      ? Colors.grey
-                      : ColorUtility.secondary,
+                Expanded(
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ...List.generate(
+                              demoData.length,
+                                  (index) => Center(
+                                child: DotsIndicator(
+                                  isActive: index == pageIndex,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        kIsWeb ? const SizedBox(
+                          height: 30,
+                        ) : const SizedBox(
+                          height: 70,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              if (pageIndex > 0)
+                                OnBoardArrows(
+                                  onPressed: () {
+                                    pageController.previousPage(
+                                      duration: const Duration(milliseconds: 300),
+                                      curve: Curves.ease,
+                                    );
+                                  },
+                                  icon: Icons.arrow_back,
+                                  color:  Colors.grey,
+                                ),
+                              if (pageIndex < demoData.length - 1)
+                                Expanded(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      OnBoardArrows(
+                                        onPressed: () {
+                                          pageController.nextPage(
+                                            duration: const Duration(milliseconds: 300),
+                                            curve: Curves.ease,
+                                          );
+                                        },
+                                        icon: Icons.arrow_forward,
+                                        color: ColorUtility.secondary,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ),
+                       const SizedBox(
+                          height: 50,
+                        ),
+                      ],
+                    ),
                 ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 70,
-          ),
-        ]),
-      )),
+              ])),
     );
   }
 }
