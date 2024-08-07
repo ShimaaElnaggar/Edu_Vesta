@@ -1,23 +1,26 @@
 import 'package:edu_vesta/models/on_board.dart';
+import 'package:edu_vesta/services/preferences_services.dart';
 import 'package:edu_vesta/utils/color_utility.dart';
-import 'package:edu_vesta/widgets/custom_elveted_button.dart';
+import 'package:edu_vesta/views/Login/login_view.dart';
+import 'package:edu_vesta/widgets/custom_elevated_button.dart';
 import 'package:edu_vesta/widgets/dots_indicator.dart';
 import 'package:edu_vesta/widgets/on_board_arrows.dart';
 import 'package:edu_vesta/widgets/on_boarding_content.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class OnBoarding extends StatefulWidget {
-  const OnBoarding({super.key});
+class OnBoardingView extends StatefulWidget {
+  static const id = 'OnBoarding' ;
+  const OnBoardingView({super.key});
 
   @override
-  State<OnBoarding> createState() => _OnBoardingState();
+  State<OnBoardingView> createState() => _OnBoardingViewState();
 }
 
-class _OnBoardingState extends State<OnBoarding> {
+class _OnBoardingViewState extends State<OnBoardingView> {
   int pageIndex = 0;
   late PageController pageController;
-  //late Timer timer;
+
   final List<OnBoard> demoData = [
     OnBoard(
         image: 'assets/images/badges.png',
@@ -43,16 +46,6 @@ class _OnBoardingState extends State<OnBoarding> {
   @override
   void initState() {
     pageController = PageController(initialPage: 0);
-    // timer = Timer.periodic(const Duration(seconds: 5), (timer) {
-    //   if (pageIndex < demoData.length - 1) {
-    //     pageController.nextPage(
-    //       duration: const Duration(milliseconds: 300),
-    //       curve: Curves.ease,
-    //     );
-    //   } else {
-    //     timer.cancel();
-    //   }
-    // });
     super.initState();
   }
 
@@ -162,8 +155,8 @@ class _OnBoardingState extends State<OnBoarding> {
       ? Padding(
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
           child: CustomElevatedButton(
-            onPressed: () {},
-            title: 'Register',
+            onPressed: onLogin,
+            title: 'Login',
             fixedSize: const Size(double.maxFinite, 50),
           ),
         )
@@ -199,4 +192,9 @@ class _OnBoardingState extends State<OnBoarding> {
             ],
           ),
         );
+
+   void onLogin() {
+    PreferencesServices.isOnBoardingSeen = true;
+    Navigator.pushReplacementNamed(context, LoginView.id);
+  }
 }
