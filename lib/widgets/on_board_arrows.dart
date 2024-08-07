@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardArrows extends StatelessWidget {
@@ -15,8 +14,8 @@ class OnBoardArrows extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: kIsWeb ? 42 : 60,
-      width: kIsWeb ? 42 : 60,
+      height: 60,
+      width: 60,
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(30),
@@ -26,7 +25,7 @@ class OnBoardArrows extends StatelessWidget {
         icon: Icon(
           icon,
           color: Colors.white,
-          size: kIsWeb ? 22.5 : 30,
+          size: 30,
         ),
       ),
     );
