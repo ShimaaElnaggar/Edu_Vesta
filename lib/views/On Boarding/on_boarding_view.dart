@@ -3,9 +3,9 @@ import 'package:edu_vesta/services/preferences_services.dart';
 import 'package:edu_vesta/utils/color_utility.dart';
 import 'package:edu_vesta/views/Login/login_view.dart';
 import 'package:edu_vesta/widgets/custom_elevated_button.dart';
-import 'package:edu_vesta/widgets/dots_indicator.dart';
-import 'package:edu_vesta/widgets/on_board_arrows.dart';
-import 'package:edu_vesta/widgets/on_boarding_content.dart';
+import 'package:edu_vesta/widgets/onBoarding/dots_indicator.dart';
+import 'package:edu_vesta/widgets/onBoarding/on_board_arrows.dart';
+import 'package:edu_vesta/widgets/onBoarding/on_boarding_content.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
