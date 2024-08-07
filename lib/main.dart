@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:edu_vesta/utils/color_utility.dart';
 import 'package:edu_vesta/views/Splash/splash_view.dart';
 import 'package:flutter/material.dart';
@@ -9,10 +11,11 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scrollBehavior: _CustomScrollBehavior(),
       debugShowCheckedModeBanner: false,
       title: ' Edu Vesta ',
       theme: ThemeData(
@@ -29,3 +32,14 @@ class MyApp extends StatelessWidget {
 
 
 
+class _CustomScrollBehavior extends MaterialScrollBehavior{
+  @override
+
+  Set<PointerDeviceKind> get dragDevices => {
+
+    PointerDeviceKind.mouse,
+
+    PointerDeviceKind.touch,
+  };
+
+}
