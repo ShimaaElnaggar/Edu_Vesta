@@ -1,15 +1,23 @@
 import 'dart:ui';
-
+import 'package:edu_vesta/firebase_options.dart';
 import 'package:edu_vesta/services/preferences_services.dart';
 import 'package:edu_vesta/utils/color_utility.dart';
 import 'package:edu_vesta/views/Home/home_view.dart';
 import 'package:edu_vesta/views/On%20Boarding/on_boarding_view.dart';
 import 'package:edu_vesta/views/Splash/splash_view.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await PreferencesServices.initPreferences();
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } catch (e) {
+    print('Firebase initialization failed: $e');
+  }
   runApp(const MyApp());
 }
 

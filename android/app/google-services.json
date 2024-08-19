@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "245539555685",
+    "project_id": "edu-vesta",
+    "storage_bucket": "edu-vesta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245539555685:android:a3fe60e0ec3f4eb6dbf98c",
+        "android_client_info": {
+          "package_name": "com.example.edu_vesta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "245539555685-upg4m7nduphlnvaf2kqgm4ts7s5bgacc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQF03__iLkCXPjZmMBEqPoesO5iaKV1GM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "245539555685-upg4m7nduphlnvaf2kqgm4ts7s5bgacc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "245539555685-fqf9fg9ajb8c09nm82bsgjgfa1l3os85.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.eduVesta"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
