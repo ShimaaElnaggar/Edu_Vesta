@@ -53,7 +53,16 @@ class _ConfirmPasswordViewState extends State<ConfirmPasswordView> {
                   ),
                   CustomElevatedButton(
                     onPressed: () {},
-                    title: 'SUBMIT',
+                    child: const Text(
+                      'SUBMIT',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),
+                    ),
+
+
                   )
                 ],
               ),

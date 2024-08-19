@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   final void Function()? onPressed;
-  final String title;
+  final Widget child;
   final Size? fixedSize;
   const CustomElevatedButton(
       {required this.onPressed,
-      required this.title,
+      required this.child,
       this.fixedSize,
       super.key});
 
@@ -23,14 +23,7 @@ class CustomElevatedButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
         ),
       ),
-      child: Text(
-        title,
-        style: const TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.w700,
-          color: Colors.white,
-        ),
-      ),
+      child: child
     );
   }
 }
