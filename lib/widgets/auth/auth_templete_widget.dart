@@ -1,4 +1,5 @@
 import 'package:edu_vesta/utils/color_utility.dart';
+import 'package:edu_vesta/utils/image_utility.dart';
 import 'package:edu_vesta/views/Login/login_view.dart';
 import 'package:edu_vesta/views/Sign%20UP/sign_up_view.dart';
 import 'package:edu_vesta/widgets/custom_elevated_button.dart';
@@ -69,6 +70,8 @@ class _AuthTemplateWidgetState extends State<AuthTemplateWidget> {
                 children: [
                   Expanded(
                     child: CustomElevatedButton(
+                      horizontal: 0,
+                        backgroundColor: const Color(0xff1877f2),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -78,7 +81,7 @@ class _AuthTemplateWidgetState extends State<AuthTemplateWidget> {
                               decoration: const BoxDecoration(
                                   color: Colors.white, shape: BoxShape.circle),
                               child: Image.asset(
-                                'assets/images/facebook-64.png',
+                                ImageUtility.facebook,
                                 width: 80,
                                 height: 80,
                               ),
@@ -86,7 +89,7 @@ class _AuthTemplateWidgetState extends State<AuthTemplateWidget> {
                             const SizedBox(width: 10),
                             const Expanded(
                               child: Text(
-                                'Sign In with Facebook',
+                                ImageUtility.google,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontSize: 17),
                               ),
@@ -99,6 +102,8 @@ class _AuthTemplateWidgetState extends State<AuthTemplateWidget> {
                     width: 15,
                   ),
                   CustomElevatedButton(
+                    horizontal: 0,
+                    backgroundColor: Colors.white,
                     onPressed: () {},
                     child: Image.asset(
                       'assets/images/google.png',

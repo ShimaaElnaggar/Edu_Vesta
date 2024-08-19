@@ -156,7 +156,6 @@ class _OnBoardingViewState extends State<OnBoardingView> {
           padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
           child: CustomElevatedButton(
             onPressed: onLogin,
-            fixedSize: const Size(double.maxFinite, 50),
             child: const Text(
               'login',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
