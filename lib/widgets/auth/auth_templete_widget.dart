@@ -1,4 +1,6 @@
 import 'package:edu_vesta/utils/color_utility.dart';
+import 'package:edu_vesta/views/Login/login_view.dart';
+import 'package:edu_vesta/views/Sign%20UP/sign_up_view.dart';
 import 'package:edu_vesta/widgets/custom_elevated_button.dart';
 import 'package:edu_vesta/widgets/custom_text_button.dart';
 import 'package:flutter/material.dart';
@@ -122,9 +124,10 @@ class _AuthTemplateWidgetState extends State<AuthTemplateWidget> {
                 CustomTextButton(
                   label: isLogin ? 'Sign Up' : 'Login',
                   onPressed: () {
-                    // Navigator.pushNamed(
-                    //     context, isLogin ? SignUpPage.id : LoginPage.id,
-                    // );
+                    Navigator.pushNamed(
+                      context,
+                      isLogin ? SignUpView.id : LoginView.id,
+                    );
                   },
                 )
               ],

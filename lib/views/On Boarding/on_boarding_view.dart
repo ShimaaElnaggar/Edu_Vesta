@@ -10,7 +10,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardingView extends StatefulWidget {
-  static const id = 'OnBoarding' ;
+  static const id = 'OnBoarding';
   const OnBoardingView({super.key});
 
   @override
@@ -153,11 +153,14 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
   Widget get getButtons => pageIndex == demoData.length - 1
       ? Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
           child: CustomElevatedButton(
             onPressed: onLogin,
-            title: 'Login',
             fixedSize: const Size(double.maxFinite, 50),
+            child: const Text(
+              'login',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
           ),
         )
       : Padding(
@@ -193,7 +196,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
           ),
         );
 
-   void onLogin() {
+  void onLogin() {
     PreferencesServices.isOnBoardingSeen = true;
     Navigator.pushReplacementNamed(context, LoginView.id);
   }

@@ -25,7 +25,6 @@ class _SplashViewState extends State<SplashView> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
               ImageUtility.logo,

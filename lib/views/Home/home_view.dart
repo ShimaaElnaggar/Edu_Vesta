@@ -1,4 +1,6 @@
 
+import 'package:edu_vesta/views/Login/login_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
@@ -12,9 +14,34 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
       body: Center(
-        child: Text('Home'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Center(child: Text('Firebase Auth Status')),
+            const SizedBox(height: 10),
+             Center(child: Text('${FirebaseAuth.instance.currentUser?.email} \n ${FirebaseAuth.instance.currentUser?.displayName}')),
+            StreamBuilder(
+                stream: FirebaseAuth.instance.authStateChanges(),
+                builder: (context,snapshots){
+                  if(snapshots.connectionState == ConnectionState.waiting) {
+                    return CircularProgressIndicator();
+                }
+                  if(snapshots.data != null) {
+                    return Text('Yor are Logged In');
+                  }
+                  return Text('No user signed in.');
+                }),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, LoginView.id);
+              },
+              child: Text('go'),
+            )
+          ],
+        ),
       ),
     );
   }

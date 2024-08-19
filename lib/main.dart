@@ -3,7 +3,9 @@ import 'package:edu_vesta/firebase_options.dart';
 import 'package:edu_vesta/services/preferences_services.dart';
 import 'package:edu_vesta/utils/color_utility.dart';
 import 'package:edu_vesta/views/Home/home_view.dart';
+import 'package:edu_vesta/views/Login/login_view.dart';
 import 'package:edu_vesta/views/On%20Boarding/on_boarding_view.dart';
+import 'package:edu_vesta/views/Sign%20UP/sign_up_view.dart';
 import 'package:edu_vesta/views/Splash/splash_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +46,10 @@ class MyApp extends StatelessWidget {
                 builder: (context) => const OnBoardingView());
           case HomeView.id:
             return MaterialPageRoute(builder: (context) => const HomeView());
+            case LoginView.id:
+              return MaterialPageRoute(builder: (context) => const LoginView());
+          case SignUpView.id:
+            return MaterialPageRoute(builder: (context) => const SignUpView());
           default:
             return MaterialPageRoute(builder: (context) => const SplashView());
         }
