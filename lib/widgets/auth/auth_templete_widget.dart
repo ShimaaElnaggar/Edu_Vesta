@@ -89,7 +89,7 @@ class _AuthTemplateWidgetState extends State<AuthTemplateWidget> {
                             const SizedBox(width: 10),
                             const Expanded(
                               child: Text(
-                                ImageUtility.google,
+                                'Sign In With Facebook',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontSize: 17),
                               ),
@@ -106,7 +106,7 @@ class _AuthTemplateWidgetState extends State<AuthTemplateWidget> {
                     backgroundColor: Colors.white,
                     onPressed: () {},
                     child: Image.asset(
-                      'assets/images/google.png',
+                      ImageUtility.google,
                       width: 35,
                       height: 40,
                     ),
