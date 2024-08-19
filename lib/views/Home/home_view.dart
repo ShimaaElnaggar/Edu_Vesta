@@ -26,19 +26,19 @@ class _HomeViewState extends State<HomeView> {
                 stream: FirebaseAuth.instance.authStateChanges(),
                 builder: (context,snapshots){
                   if(snapshots.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator();
+                    return const CircularProgressIndicator();
                 }
                   if(snapshots.data != null) {
-                    return Text('Yor are Logged In');
+                    return const Text('Yor are Logged In');
                   }
-                  return Text('No user signed in.');
+                  return const Text('No user signed in.');
                 }),
             const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, LoginView.id);
               },
-              child: Text('go'),
+              child: const Text('go'),
             )
           ],
         ),

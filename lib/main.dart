@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:edu_vesta/cubit/auth_cubit.dart';
 import 'package:edu_vesta/firebase_options.dart';
 import 'package:edu_vesta/services/preferences_services.dart';
 import 'package:edu_vesta/utils/color_utility.dart';
@@ -9,6 +10,7 @@ import 'package:edu_vesta/views/Sign%20UP/sign_up_view.dart';
 import 'package:edu_vesta/views/Splash/splash_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +22,10 @@ void main() async {
   } catch (e) {
     print('Firebase initialization failed: $e');
   }
-  runApp(const MyApp());
+  runApp(MultiBlocProvider(
+    providers: [BlocProvider(create: (ctx) => AuthCubit())],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -46,8 +51,8 @@ class MyApp extends StatelessWidget {
                 builder: (context) => const OnBoardingView());
           case HomeView.id:
             return MaterialPageRoute(builder: (context) => const HomeView());
-            case LoginView.id:
-              return MaterialPageRoute(builder: (context) => const LoginView());
+          case LoginView.id:
+            return MaterialPageRoute(builder: (context) => const LoginView());
           case SignUpView.id:
             return MaterialPageRoute(builder: (context) => const SignUpView());
           default:

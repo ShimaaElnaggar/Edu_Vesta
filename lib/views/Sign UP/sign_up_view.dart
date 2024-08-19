@@ -1,8 +1,7 @@
+import 'package:edu_vesta/cubit/auth_cubit.dart';
 import 'package:edu_vesta/widgets/custom_text_form_field.dart';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../widgets/auth/auth_templete_widget.dart';
 
 class SignUpView extends StatefulWidget {
@@ -42,33 +41,11 @@ class _SignUpViewState extends State<SignUpView> {
   Widget build(BuildContext context) {
     return AuthTemplateWidget(
       onSignUp: () async {
-        try {
-          var credentials = await FirebaseAuth.instance
-              .createUserWithEmailAndPassword(
-                  email: emailController.text,
-                  password: passwordController.text);
-          if (!context.mounted) return;
-          if (credentials.user != null) {
-            credentials.user!.updateDisplayName(nameController.text);
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Sign Up Successful!')),
-            );
-          }
-        } on FirebaseAuthException catch (e) {
-          if (e.code == 'week password') {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Error: Week Password')),
-            );
-          } else if (e.code == 'email already in_use') {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Error: Email already in use')),
-            );
-          }
-        } catch (error) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Error: $error')),
-          );
-        }
+        await context.read<AuthCubit>().signUp(
+            context: context,
+            emailController: emailController,
+            nameController: nameController,
+            passwordController: passwordController);
       },
       body: Column(
         children: [
