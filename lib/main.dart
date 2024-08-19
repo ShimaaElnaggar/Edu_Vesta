@@ -6,6 +6,7 @@ import 'package:edu_vesta/utils/color_utility.dart';
 import 'package:edu_vesta/views/Home/home_view.dart';
 import 'package:edu_vesta/views/Login/login_view.dart';
 import 'package:edu_vesta/views/On%20Boarding/on_boarding_view.dart';
+import 'package:edu_vesta/views/Reset%20Password/reset_password_view.dart';
 import 'package:edu_vesta/views/Sign%20UP/sign_up_view.dart';
 import 'package:edu_vesta/views/Splash/splash_view.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -55,6 +56,9 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(builder: (context) => const LoginView());
           case SignUpView.id:
             return MaterialPageRoute(builder: (context) => const SignUpView());
+          case ResetPasswordView.id:
+            return MaterialPageRoute(
+                builder: (context) => const ResetPasswordView());
           default:
             return MaterialPageRoute(builder: (context) => const SplashView());
         }

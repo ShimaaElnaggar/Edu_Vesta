@@ -91,6 +91,9 @@ class AuthCubit extends Cubit<AuthState> {
         );
         Navigator.pushReplacementNamed(context, HomeView.id);
       }
+      nameController.clear();
+      emailController.clear();
+      passwordController.clear();
     } on FirebaseAuthException catch (e) {
       if (!context.mounted) return;
       if (e.code == 'weak-password') {

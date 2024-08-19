@@ -153,8 +153,10 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
   Widget get getButtons => pageIndex == demoData.length - 1
       ? Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
           child: CustomElevatedButton(
+            backgroundColor: ColorUtility.secondary,
+            width: double.maxFinite,
             onPressed: onLogin,
             child: const Text(
               'login',
