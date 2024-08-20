@@ -163,14 +163,23 @@ class _AuthTemplateWidgetState extends State<AuthTemplateWidget> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     widget.body,
-                    CustomTextButton(
-                      label: 'Forgot Password ?',
-                      onPressed: () {},
-                    ),
+                     Padding(
+                       padding: const EdgeInsets.only(right: 15),
+                       child: Row(
+                         mainAxisAlignment: MainAxisAlignment.end,
+                         children: [
+                           CustomTextButton(
+                            label: isLogin ? 'Forget Password ?' : '',
+                            onPressed: () {},
+                                               ),
+                         ],
+                       ),
+                     ),
                     Row(
                       children: [
                         Expanded(
                           child: CustomElevatedButton(
+                            backgroundColor: ColorUtility.secondary,
                             onPressed: () async {
                               if (isLogin) {
                                 setState(() {

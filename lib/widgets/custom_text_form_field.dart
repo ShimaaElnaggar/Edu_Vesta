@@ -35,36 +35,50 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      inputFormatters: inputFormatters,
-      onChanged: onChanged,
-      onSaved: onSaved,
-      obscureText: obscureText,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      keyboardType: keyboardType,
-      textInputAction: textInputAction,
-      autocorrect: true,
-      decoration: InputDecoration(
-        suffixIcon: suffixIcon,
-        prefixIcon: prefixIcon,
-        labelText: label,
-        hintText: hint,
-        hintStyle: const TextStyle(color: ColorUtility.grey),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: ColorUtility.secondary, width: 2),
-        ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
-        ),
-        errorBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red, width: 2),
-        ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            label,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          TextFormField(
+            controller: controller,
+            inputFormatters: inputFormatters,
+            onChanged: onChanged,
+            onSaved: onSaved,
+            obscureText: obscureText,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            keyboardType: keyboardType,
+            textInputAction: textInputAction,
+            autocorrect: true,
+            decoration: InputDecoration(
+              suffixIcon: suffixIcon,
+              prefixIcon: prefixIcon,
+              hintText: hint,
+              hintStyle: const TextStyle(color: ColorUtility.grey),
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: ColorUtility.secondary, width: 2),
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5),
+              ),
+              errorBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.red, width: 2),
+              ),
+            ),
+            validator: validator,
+          ),
+        ],
       ),
-      validator: validator,
     );
   }
 }

@@ -1,7 +1,9 @@
 import 'package:edu_vesta/services/preferences_services.dart';
 import 'package:edu_vesta/utils/image_utility.dart';
 import 'package:edu_vesta/views/Home/home_view.dart';
+import 'package:edu_vesta/views/Login/login_view.dart';
 import 'package:edu_vesta/views/On%20Boarding/on_boarding_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SplashView extends StatefulWidget {
@@ -37,13 +39,16 @@ class _SplashViewState extends State<SplashView> {
     );
   }
 
-  void _showOnBoarding() async{
+  void _showOnBoarding() async {
     await Future.delayed(const Duration(seconds: 1));
-    if(mounted){
+    if (mounted) {
       if (PreferencesServices.isOnBoardingSeen) {
-        Navigator.pushReplacementNamed(context, HomeView.id);
-      }
-      else {
+        if (FirebaseAuth.instance.currentUser != null) {
+          Navigator.pushReplacementNamed(context, HomeView.id);
+        } else {
+          Navigator.pushReplacementNamed(context, LoginView.id);
+        }
+      } else {
         Navigator.pushReplacementNamed(context, OnBoardingView.id);
       }
     }
