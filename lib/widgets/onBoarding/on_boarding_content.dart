@@ -41,7 +41,7 @@ class OnBoardingContent extends StatelessWidget {
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w300,
-            color: ColorUtility.grey,
+            color: Colors.black,
           ),
         ),
       ],

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:edu_vesta/models/category.dart';
 import 'package:edu_vesta/models/instructor.dart';
 
@@ -6,9 +7,11 @@ class Course {
   String? title;
   double? price;
   String? concurrency;
+  String? rank;
   bool? hasCertificate;
   int? totalHours;
   double? rating;
+  DateTime? createdDate;
   Instructor? instructor;
   Category? category;
 
@@ -22,19 +25,33 @@ class Course {
     this.rating,
     this.instructor,
     this.category,
+    required this.rank,
+    this.createdDate,
   });
 
   factory Course.fromJson(Map<String, dynamic> json) {
     return Course(
       image: json['image'],
       title: json['title'],
-      price: json['price'],
+      price: json['price'] is int
+          ? (json['price'] as int).toDouble()
+          : json['price'].toDouble(),
+      rank: json['rank'],
+      rating: json['rating'] is int
+          ? (json['rating'] as int).toDouble()
+          : json['rating'].toDouble(),
       concurrency: json['concurrency'],
       hasCertificate: json['hasCertificate'],
       totalHours: json['totalHours'],
-      rating: json['rating'],
-      instructor: Instructor.fromJson(json['instructor']),
-      category: Category.fromJson(json['category']),
+      createdDate: json['created_date'] != null
+          ? (json['created_date'] as Timestamp).toDate()
+          : null,
+        instructor : json['instructor'] != null
+            ? Instructor.fromJson(json['instructor'])
+            : null,
+      category: Category.fromJson({
+        'id': (json['category'] as DocumentReference).id,
+      }),
     );
   }
 

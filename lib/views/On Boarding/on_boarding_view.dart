@@ -141,7 +141,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                       height: 30,
                     )
                   : const SizedBox(
-                      height: 70,
+                      height: 60,
                     ),
               getButtons,
             ],
