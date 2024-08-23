@@ -1,8 +1,16 @@
+import 'package:edu_vesta/models/course.dart';
 import 'package:flutter/material.dart';
 
-class CourseDetailsView extends StatelessWidget {
-  const CourseDetailsView({super.key});
+class CourseDetailsView extends StatefulWidget {
+  static const id = 'Course Details';
+  final Course course;
+  const CourseDetailsView({required this.course,super.key});
 
+  @override
+  State<CourseDetailsView> createState() => _CourseDetailsViewState();
+}
+
+class _CourseDetailsViewState extends State<CourseDetailsView> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -21,6 +29,7 @@ class CourseDetailsView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.yellow,
               ),
+              child: Text(widget.course.title.toString()),
             ),
           ),
         ],

@@ -20,7 +20,6 @@ class AuthCubit extends Cubit<AuthState> {
 
       if (credentials.user != null) {
         if (!context.mounted) return;
-
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('You Logged In Successfully'),

@@ -1,7 +1,7 @@
-
 import 'package:edu_vesta/widgets/categories_widget.dart';
 import 'package:edu_vesta/widgets/courses_widget.dart';
 import 'package:edu_vesta/widgets/label_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 
@@ -16,42 +16,46 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
-               Row(
-                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                const Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                          text: 'Welcome',
-                          style: TextStyle(fontSize: 24,fontWeight: FontWeight.w800)),
-                      TextSpan(
-                          text: 'Menna',
-                          style: TextStyle(fontSize: 24,color: ColorUtility.primary)),
-                    ],
+                  Text.rich(
+                    TextSpan(
+                      children: [
+                        const TextSpan(
+                            text: 'Welcome',
+                            style: TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.w800)),
+                        TextSpan(
+                            text:
+                                FirebaseAuth.instance.currentUser?.displayName,
+                            style: const TextStyle(
+                                fontSize: 24, color: ColorUtility.primary)),
+                      ],
+                    ),
                   ),
-                ),
                   IconButton(
                     icon: const Icon(Icons.shopping_cart),
                     onPressed: () {},
                   ),
-              ],
+                ],
               ),
               LabelWidget(
                 name: 'Categories',
                 onSeeAllClicked: () {},
               ),
               const CategoriesWidget(),
-              const SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               LabelWidget(
                 name: 'Top Courses',
                 onSeeAllClicked: () {},

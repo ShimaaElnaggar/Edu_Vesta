@@ -3,6 +3,7 @@ import 'package:edu_vesta/cubit/auth_cubit.dart';
 import 'package:edu_vesta/firebase_options.dart';
 import 'package:edu_vesta/services/preferences_services.dart';
 import 'package:edu_vesta/utils/color_utility.dart';
+import 'package:edu_vesta/views/Courses/course_details_view.dart';
 import 'package:edu_vesta/views/Home/home_view.dart';
 import 'package:edu_vesta/views/Login/login_view.dart';
 import 'package:edu_vesta/views/On%20Boarding/on_boarding_view.dart';
@@ -21,7 +22,8 @@ void main() async {
       options: DefaultFirebaseOptions.currentPlatform,
     );
   } catch (e) {
-    print('Firebase initialization failed: $e');
+    //print('Firebase initialization failed: $e');
+    return;
   }
   runApp(MultiBlocProvider(
     providers: [BlocProvider(create: (ctx) => AuthCubit())],
@@ -45,11 +47,16 @@ class MyApp extends StatelessWidget {
       ),
       onGenerateRoute: (settings) {
         final String routeName = settings.name ?? '';
-        //final Map? data = settings.arguments as Map?;
+        final dynamic data = settings.arguments;
         switch (routeName) {
           case OnBoardingView.id:
             return MaterialPageRoute(
                 builder: (context) => const OnBoardingView());
+          case CourseDetailsView.id:
+            return MaterialPageRoute(
+                builder: (context) => CourseDetailsView(
+                      course: data,
+                    ));
           case HomeView.id:
             return MaterialPageRoute(builder: (context) => const HomeView());
           case LoginView.id:
