@@ -14,6 +14,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'bloc/course_bloc.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await PreferencesServices.initPreferences();
@@ -26,7 +28,10 @@ void main() async {
     return;
   }
   runApp(MultiBlocProvider(
-    providers: [BlocProvider(create: (ctx) => AuthCubit())],
+    providers: [
+      BlocProvider(create: (ctx) => AuthCubit()),
+      BlocProvider(create: (ctx) => CourseBloc()),
+    ],
     child: const MyApp(),
   ));
 }

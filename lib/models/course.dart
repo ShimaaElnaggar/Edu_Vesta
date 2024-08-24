@@ -3,6 +3,7 @@ import 'package:edu_vesta/models/category.dart';
 import 'package:edu_vesta/models/instructor.dart';
 
 class Course {
+  String? id;
   String? image;
   String? title;
   double? price;
@@ -16,6 +17,7 @@ class Course {
   Category? category;
 
   Course({
+    this.id,
     this.image,
     this.title,
     this.price,
@@ -31,6 +33,7 @@ class Course {
 
   factory Course.fromJson(Map<String, dynamic> json) {
     return Course(
+      id : json['id'],
       image: json['image'],
       title: json['title'],
       price: json['price'] is int
@@ -57,6 +60,7 @@ class Course {
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'image': image,
       'title': title,
       'price': price,
