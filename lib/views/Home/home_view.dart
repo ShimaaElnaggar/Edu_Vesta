@@ -1,11 +1,9 @@
-import 'package:edu_vesta/widgets/categories_widget.dart';
-import 'package:edu_vesta/widgets/courses_widget.dart';
-import 'package:edu_vesta/widgets/label_widget.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:flutter/material.dart';
 
 import '../../utils/color_utility.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../../widgets/home_widget.dart';
 
 class HomeView extends StatefulWidget {
   static const id = 'Home';
@@ -16,54 +14,106 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  int selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> widgetsOptions = [
+    HomeWidget(),
+    Text(
+      'Courses',
+      style: optionStyle,
+    ),
+    Text(
+      'Search',
+      style: optionStyle,
+    ),
+    Text(
+      'Chats',
+      style: optionStyle,
+    ),
+    Text(
+      'Profile',
+      style: optionStyle,
+    ),
+  ];
+  void onItemSelected(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text.rich(
-                    TextSpan(
-                      children: [
-                        const TextSpan(
-                            text: 'Welcome',
-                            style: TextStyle(
-                                fontSize: 24, fontWeight: FontWeight.w800)),
-                        TextSpan(
-                            text:
-                                FirebaseAuth.instance.currentUser?.displayName,
-                            style: const TextStyle(
-                                fontSize: 24, color: ColorUtility.primary)),
-                      ],
+        bottomNavigationBar: Stack(
+          children: [
+            BottomNavigationBar(
+              backgroundColor: Colors.white,
+              currentIndex: selectedIndex,
+              onTap: onItemSelected,
+              selectedItemColor: ColorUtility.secondary,
+              unselectedItemColor: ColorUtility.primary,
+              type: BottomNavigationBarType.shifting,
+              items: const [
+                BottomNavigationBarItem(
+                  backgroundColor: Colors.white,
+                  label: '',
+                  icon: Icon(
+                    Icons.home,
+                    size: 18,
+                  ),
+                ),
+                BottomNavigationBarItem(
+                    icon: FaIcon(
+                      FontAwesomeIcons.bookOpen,
+                      size: 18,
                     ),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.shopping_cart),
-                    onPressed: () {},
-                  ),
-                ],
+                    backgroundColor: Colors.white,
+                    label: ''),
+                BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.search,
+                      size: 18,
+                    ),
+                    backgroundColor: Colors.white,
+                    label: ''),
+                BottomNavigationBarItem(
+                    icon: FaIcon(
+                      FontAwesomeIcons.message,
+                      size: 18,
+                    ),
+                    backgroundColor: Colors.white,
+                    label: ''),
+                BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.person,
+                      size: 18,
+                    ),
+                    backgroundColor: Colors.white,
+                    label: ''),
+              ],
+            ),
+            Positioned(
+              bottom: 20,
+              left: 0,
+              right: 0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: List.generate(5, (index) {
+                  return Container(
+                    height: 2,
+                    width: MediaQuery.of(context).size.width / 14,
+                    color: index == selectedIndex
+                        ? ColorUtility.secondary
+                        : Colors.transparent,
+                  );
+                }),
               ),
-              LabelWidget(
-                name: 'Categories',
-                onSeeAllClicked: () {},
-              ),
-              const CategoriesWidget(),
-              const SizedBox(
-                height: 10,
-              ),
-              LabelWidget(
-                name: 'Top Courses',
-                onSeeAllClicked: () {},
-              ),
-              const CoursesWidget(rankValue: 'top_rated'),
-            ],
-          ),
+            ),
+          ],
         ),
+        body: widgetsOptions.elementAt(selectedIndex),
       ),
     );
   }

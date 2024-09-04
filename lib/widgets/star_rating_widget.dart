@@ -22,16 +22,19 @@ class StarRating extends StatelessWidget {
       icon = const Icon(
         Icons.star_border,
         color: ColorUtility.primary,
+        size: 11.4,
       );
     } else if (index > rating - 1 && index < rating) {
       icon = const Icon(
         Icons.star_half,
         color: ColorUtility.primary,
+        size: 11.4,
       );
     } else {
       icon = const Icon(
         Icons.star,
         color: ColorUtility.primary,
+        size: 11.4,
       );
     }
     return InkResponse(

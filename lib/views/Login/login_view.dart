@@ -1,7 +1,6 @@
 import 'package:edu_vesta/cubit/auth_cubit.dart';
 import 'package:edu_vesta/widgets/auth/auth_templete_widget.dart';
 import 'package:edu_vesta/widgets/custom_text_form_field.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -40,7 +39,6 @@ class _LoginViewState extends State<LoginView> {
             context: context,
             emailController: emailController,
             passwordController: passwordController);
-        print(FirebaseAuth.instance.currentUser?.displayName,);
       },
       body: Column(
         children: [
@@ -51,7 +49,7 @@ class _LoginViewState extends State<LoginView> {
             keyboardType: TextInputType.emailAddress,
           ),
           const SizedBox(
-            height: 20,
+            height: 15,
           ),
           CustomTextFormField(
             controller: passwordController,

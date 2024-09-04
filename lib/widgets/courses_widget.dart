@@ -63,13 +63,21 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                       height: 80,
                       width: 80,
                       fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Text('Image Load Error');
+                      },
                     )
                         : const Text('No Image Available'),
                   ),
                   const SizedBox(height: 10),
                   Row(
                     children: [
-                      Text(courses[index].rating.toString()),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text(
+                          courses[index].rating.toString(),
+                          style: const TextStyle(fontWeight:FontWeight.w600,fontSize:11.4,color: ColorUtility.kBlack),),
+                      ),
                       StarRating(
                         rating: courses[index].rating!.toDouble(),
                         ratingChangeCallback: () {
@@ -81,16 +89,16 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                     ],
                   ),
                   Text(
-                    courses[index].title.toString(),
+                      courses[index].title.toString(),
                     style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.bold),
+                        fontSize: 15, fontWeight: FontWeight.w600,color: ColorUtility.kBlack),
                   ),
                   const SizedBox(height: 5),
                   Row(
                     children: [
-                      const Icon(Icons.perm_identity),
+                      const Icon(Icons.perm_identity,size: 17.5,),
                       Text(courses[index].instructor!.name.toString(),
-                          style: const TextStyle(fontSize: 14)),
+                          style: const TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: ColorUtility.kBlack)),
                     ],
                   ),
                   const SizedBox(height: 5),
@@ -98,11 +106,19 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                     children: [
                       Text(
                         courses[index].concurrency.toString(),
-                        style: const TextStyle(color: ColorUtility.primary),
+                        style: const TextStyle(
+                            color: ColorUtility.primary,
+                          fontSize: 17.54,
+                            fontWeight: FontWeight.w800,
+                        ),
                       ),
                       Text(
                         courses[index].price.toString(),
-                        style: const TextStyle(color: ColorUtility.primary),
+                        style: const TextStyle(
+                            color: ColorUtility.primary,
+                            fontWeight: FontWeight.bold,
+                          fontSize: 18
+                        ),
                       ),
                     ],
                   ),
@@ -118,7 +134,7 @@ class _CoursesWidgetState extends State<CoursesWidget> {
   Future<QuerySnapshot>  _futureToResolve() {
     return FirebaseFirestore.instance
         .collection('courses')
-//.where('rank', isEqualTo: widget.rankValue)
+.where('rank', isEqualTo: widget.rankValue)
 //.orderBy('created_date', descending: true)
         .get();
   }

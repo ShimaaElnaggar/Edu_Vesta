@@ -14,7 +14,7 @@ class LabelWidget extends StatelessWidget {
         children: [
           Text(
             name,
-            style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
           ),
           InkWell(
             onTap: onSeeAllClicked,

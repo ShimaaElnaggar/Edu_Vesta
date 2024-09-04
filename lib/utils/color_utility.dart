@@ -7,4 +7,5 @@ class ColorUtility {
   static const meduimBlack = Color(0xff1D1B20);
   static const grey = Color(0xffD1D1D6);
   static const lightGrey = Color(0xffE0E0E0);
+  static const kBlack = Color(0xFF060302);
 }

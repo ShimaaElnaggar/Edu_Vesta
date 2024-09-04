@@ -53,7 +53,7 @@ class _AuthTemplateWidgetState extends State<AuthTemplateWidget> {
                   padding: EdgeInsets.symmetric(horizontal: 5),
                   child: Text(
                     'Or sign with',
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
                   ),
                 ),
                 Expanded(
@@ -70,28 +70,23 @@ class _AuthTemplateWidgetState extends State<AuthTemplateWidget> {
                 children: [
                   Expanded(
                     child: CustomElevatedButton(
-                      horizontal: 0,
+                        horizontal: 0,
                         backgroundColor: const Color(0xff1877f2),
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
-                              width: 35,
-                              height: 35,
-                              decoration: const BoxDecoration(
-                                  color: Colors.white, shape: BoxShape.circle),
-                              child: Image.asset(
-                                ImageUtility.facebook,
-                                width: 80,
-                                height: 80,
-                              ),
+                            Icon(
+                              Icons.facebook,
+                              color: Colors.white,
+                              size: 30,
                             ),
-                            const SizedBox(width: 10),
-                            const Expanded(
+                            SizedBox(width: 10),
+                            Expanded(
                               child: Text(
                                 'Sign In With Facebook',
                                 textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 17),
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w600),
                               ),
                             ),
                           ],
@@ -107,8 +102,8 @@ class _AuthTemplateWidgetState extends State<AuthTemplateWidget> {
                     onPressed: () {},
                     child: Image.asset(
                       ImageUtility.google,
-                      width: 35,
-                      height: 40,
+                      width: 30,
+                      height: 30,
                     ),
                   )
                 ],
@@ -121,7 +116,8 @@ class _AuthTemplateWidgetState extends State<AuthTemplateWidget> {
                   isLogin
                       ? 'Don\'t have an account?'
                       : 'Already have an account',
-                  style: const TextStyle(fontSize: 16),
+                  style: const TextStyle(
+                      fontSize: 13, fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(
                   width: 10,
@@ -147,11 +143,11 @@ class _AuthTemplateWidgetState extends State<AuthTemplateWidget> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(
-            height: 50,
+            height: 40,
           ),
           Text(
             title,
-            style: const TextStyle(fontSize: 27, fontWeight: FontWeight.w700),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
           ),
           Expanded(
             child: Padding(
@@ -163,18 +159,18 @@ class _AuthTemplateWidgetState extends State<AuthTemplateWidget> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     widget.body,
-                     Padding(
-                       padding: const EdgeInsets.only(right: 15),
-                       child: Row(
-                         mainAxisAlignment: MainAxisAlignment.end,
-                         children: [
-                           CustomTextButton(
+                    Padding(
+                      padding: const EdgeInsets.only(right: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          CustomTextButton(
                             label: isLogin ? 'Forget Password ?' : '',
                             onPressed: () {},
-                                               ),
-                         ],
-                       ),
-                     ),
+                          ),
+                        ],
+                      ),
+                    ),
                     Row(
                       children: [
                         Expanded(

@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../services/preferences_services.dart';
+
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -19,7 +21,9 @@ class AuthCubit extends Cubit<AuthState> {
       );
 
       if (credentials.user != null) {
+
         if (!context.mounted) return;
+
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('You Logged In Successfully'),
@@ -64,6 +68,7 @@ class AuthCubit extends Cubit<AuthState> {
         ),
       );
     }
+    PreferencesServices.prefs!.setString('userAction', 'login');
   }
 
   Future<void> signUp({
@@ -116,5 +121,6 @@ class AuthCubit extends Cubit<AuthState> {
         ),
       );
     }
+    PreferencesServices.prefs!.setString('userAction','signup');
   }
 }
