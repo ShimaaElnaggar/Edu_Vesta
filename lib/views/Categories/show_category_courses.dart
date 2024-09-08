@@ -1,25 +1,28 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:edu_vesta/utils/color_utility.dart';
-import 'package:edu_vesta/widgets/star_rating_widget.dart';
 import 'package:enhanced_future_builder/enhanced_future_builder.dart';
 import 'package:flutter/material.dart';
-import '../models/course.dart';
-import '../views/Courses/course_details_view.dart';
 
-class CoursesWidget extends StatefulWidget {
+import '../../models/course.dart';
+import '../../utils/color_utility.dart';
+import '../../widgets/star_rating_widget.dart';
+import '../Courses/course_details_view.dart';
+
+class ShowCategoryCoursesView extends StatefulWidget {
+  static const String id = 'show_category_courses';
   final String rankValue;
-
-  const CoursesWidget({required this.rankValue, super.key});
+  const ShowCategoryCoursesView({super.key, required this.rankValue,});
 
   @override
-  State<CoursesWidget> createState() => _CoursesWidgetState();
+  State<ShowCategoryCoursesView> createState() => _ShowCategoryCoursesViewState();
 }
 
-class _CoursesWidgetState extends State<CoursesWidget> {
+class _ShowCategoryCoursesViewState extends State<ShowCategoryCoursesView> {
   double rating = 0.0;
   @override
   Widget build(BuildContext context) {
-    return EnhancedFutureBuilder(
+
+   return EnhancedFutureBuilder(
       future: _futureToResolve(),
       rememberFutureResult: false,
       whenWaiting: const Center(child: CircularProgressIndicator()),
@@ -53,29 +56,29 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                    ),
-                    child: Image.network(
-                        courses[index].image!,
-                        height: 80,
-                        width: 80,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Container(
-                            height: 80,
-                            width: 80,
-                            decoration: BoxDecoration(
-                              color: Colors.grey, // Placeholder color
-                              borderRadius: BorderRadius.circular(40),
-                            ),
-                            child: const Center(
-                              child: Text('Image Load Error',
-                                  style: TextStyle(color: Colors.white)),
-                            ),
-                          );
-                        })),
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      child: Image.network(
+                          courses[index].image!,
+                          height: 80,
+                          width: 80,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Container(
+                              height: 80,
+                              width: 80,
+                              decoration: BoxDecoration(
+                                color: Colors.grey, // Placeholder color
+                                borderRadius: BorderRadius.circular(40),
+                              ),
+                              child: const Center(
+                                child: Text('Image Load Error',
+                                    style: TextStyle(color: Colors.white)),
+                              ),
+                            );
+                          })),
                   const SizedBox(height: 10),
                   Row(
                     children: [
@@ -96,7 +99,7 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                     ],
                   ),
                   Text(
-                      courses[index].title.toString(),
+                    courses[index].title.toString(),
                     style: const TextStyle(
                         fontSize: 15, fontWeight: FontWeight.w600,color: ColorUtility.kBlack),
                   ),
@@ -114,9 +117,9 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                       Text(
                         courses[index].concurrency.toString(),
                         style: const TextStyle(
-                            color: ColorUtility.primary,
+                          color: ColorUtility.primary,
                           fontSize: 17.54,
-                            fontWeight: FontWeight.w800,
+                          fontWeight: FontWeight.w800,
                         ),
                       ),
                       Text(
@@ -124,7 +127,7 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                         style: const TextStyle(
                             color: ColorUtility.primary,
                             fontWeight: FontWeight.bold,
-                          fontSize: 18
+                            fontSize: 18
                         ),
                       ),
                     ],
@@ -137,13 +140,11 @@ class _CoursesWidgetState extends State<CoursesWidget> {
       },
     );
   }
-
   Future<QuerySnapshot>  _futureToResolve() {
     return FirebaseFirestore.instance
         .collection('courses')
-.where('rank', isEqualTo: widget.rankValue)
+        .where('rank', isEqualTo: widget.rankValue)
 //.orderBy('created_date', descending: true)
         .get();
   }
 }
-

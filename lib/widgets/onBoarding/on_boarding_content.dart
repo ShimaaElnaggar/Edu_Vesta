@@ -1,4 +1,4 @@
-import 'package:edu_vesta/utils/color_utility.dart';
+
 import 'package:flutter/material.dart';
 
 class OnBoardingContent extends StatelessWidget {

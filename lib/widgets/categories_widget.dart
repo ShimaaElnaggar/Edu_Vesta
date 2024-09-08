@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:edu_vesta/views/Categories/show_category_courses.dart';
 import 'package:enhanced_future_builder/enhanced_future_builder.dart';
 import 'package:flutter/material.dart';
 import '../models/category.dart';
@@ -38,17 +39,24 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
             return ListView.separated(
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(40),
-                    color: ColorUtility.lightGrey,
+                return InkWell(
+                  onTap: () async{
+                    var result = FirebaseFirestore.instance.collection('courses')
+                        .where('category.id',isEqualTo: categories[index].id);
+                    Navigator.pushReplacementNamed(context, ShowCategoryCoursesView.id);
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(40),
+                      color: ColorUtility.lightGrey,
+                    ),
+                    child: Center(
+                        child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Text(categories[index].name ?? ' No Category',
+                        style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w500),),
+                    )),
                   ),
-                  child: Center(
-                      child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Text(categories[index].name ?? ' No Category',
-                      style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w500),),
-                  )),
                 );
               },
               separatorBuilder: (BuildContext context, int index) =>
