@@ -26,7 +26,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
             ),
             const Text(
               'Reset Password',
-              style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
             ),
             const SizedBox(
               height: 200,

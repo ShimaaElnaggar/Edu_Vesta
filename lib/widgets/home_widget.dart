@@ -1,3 +1,4 @@
+import 'package:edu_vesta/widgets/cart_Icon.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../services/preferences_services.dart';
@@ -72,13 +73,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                     ],
                   ),
                 ),
-                IconButton(
-                  icon: const Icon(
-                    Icons.shopping_cart,
-                    size: 27,
-                  ),
-                  onPressed: () {},
-                ),
+                const CartIcon(),
               ],
             ),
             LabelWidget(

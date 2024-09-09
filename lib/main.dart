@@ -13,7 +13,7 @@ import 'package:edu_vesta/views/Splash/splash_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'bloc/course/course_bloc.dart';
 import 'bloc/lecture/lecture_bloc.dart';
 
@@ -65,7 +65,6 @@ class MyApp extends StatelessWidget {
                 builder: (context) => CourseDetailsView(
                       course: data,
                     ));
-            case SplashView.id:
           case HomeView.id:
             return MaterialPageRoute(builder: (context) => const HomeView());
           case LoginView.id:

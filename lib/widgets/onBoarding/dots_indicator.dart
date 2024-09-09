@@ -19,7 +19,7 @@ class DotsIndicator extends StatelessWidget {
         width: isActive ? 40 : 30,
         decoration: BoxDecoration(
           borderRadius:BorderRadius.circular(20),
-          color: isActive ? ColorUtility.secondary: ColorUtility.meduimBlack,
+          color: isActive ? ColorUtility.secondary: ColorUtility.midBlack,
         ),
       ),
     );

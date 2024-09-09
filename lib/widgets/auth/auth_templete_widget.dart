@@ -124,6 +124,11 @@ class _AuthTemplateWidgetState extends State<AuthTemplateWidget> {
                 ),
                 CustomTextButton(
                   label: isLogin ? 'Sign Up' : 'Login',
+                  textStyle: const TextStyle(
+                      color: ColorUtility.secondary,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500
+                  ),
                   onPressed: () {
                     Navigator.pushNamed(
                       context,
@@ -166,6 +171,11 @@ class _AuthTemplateWidgetState extends State<AuthTemplateWidget> {
                         children: [
                           CustomTextButton(
                             label: isLogin ? 'Forget Password ?' : '',
+                            textStyle: const TextStyle(
+                              fontSize: 12,
+                              color: ColorUtility.secondary,
+                              fontWeight: FontWeight.w500
+                            ),
                             onPressed: () {},
                           ),
                         ],
