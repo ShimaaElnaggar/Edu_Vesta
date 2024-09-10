@@ -10,6 +10,7 @@ import 'package:edu_vesta/views/Login/login_view.dart';
 import 'package:edu_vesta/views/On%20Boarding/on_boarding_view.dart';
 import 'package:edu_vesta/views/Reset%20Password/reset_password_view.dart';
 import 'package:edu_vesta/views/Splash/splash_view.dart';
+import 'package:edu_vesta/views/profile/edit_user_name.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -65,6 +66,8 @@ class MyApp extends StatelessWidget {
                 builder: (context) => CourseDetailsView(
                       course: data,
                     ));
+            case EditUserNameView.id:
+              return MaterialPageRoute(builder: (context) => const EditUserNameView());
           case HomeView.id:
             return MaterialPageRoute(builder: (context) => const HomeView());
           case LoginView.id:

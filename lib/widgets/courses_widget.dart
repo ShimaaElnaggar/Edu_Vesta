@@ -53,21 +53,21 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(10),
+                    //padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(40),
                     ),
                     child: Image.network(
                         courses[index].image!,
-                        height: 80,
-                        width: 80,
+                        height: 100,
+                        width: 165,
                         fit: BoxFit.cover,
                         errorBuilder: (context, error, stackTrace) {
                           return Container(
                             height: 80,
-                            width: 80,
+                            width: 100,
                             decoration: BoxDecoration(
-                              color: Colors.grey, // Placeholder color
+                              color: Colors.grey,
                               borderRadius: BorderRadius.circular(40),
                             ),
                             child: const Center(

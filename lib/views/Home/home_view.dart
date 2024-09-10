@@ -1,8 +1,7 @@
+import 'package:edu_vesta/views/profile/profile_view.dart';
 import 'package:flutter/material.dart';
-
 import '../../utils/color_utility.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../widgets/home_widget.dart';
 
 class HomeView extends StatefulWidget {
@@ -19,10 +18,7 @@ class _HomeViewState extends State<HomeView> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> widgetsOptions = [
     HomeWidget(),
-    Text(
-      'Courses',
-      style: optionStyle,
-    ),
+    ProfileView(),
     Text(
       'Search',
       style: optionStyle,
@@ -31,10 +27,7 @@ class _HomeViewState extends State<HomeView> {
       'Chats',
       style: optionStyle,
     ),
-    Text(
-      'Profile',
-      style: optionStyle,
-    ),
+    ProfileView(),
   ];
   void onItemSelected(int index) {
     setState(() {

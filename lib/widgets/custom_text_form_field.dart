@@ -42,7 +42,7 @@ class CustomTextFormField extends StatelessWidget {
         children: [
           Text(
             label,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
           ),
           const SizedBox(
             height: 5,
@@ -61,8 +61,7 @@ class CustomTextFormField extends StatelessWidget {
               suffixIcon: suffixIcon,
               prefixIcon: prefixIcon,
               hintText: hint,
-              hintStyle: const TextStyle(color: ColorUtility.grey),
-              labelStyle:const  TextStyle(fontWeight: FontWeight.w600,fontSize: 13),
+              hintStyle: const TextStyle(color: Color(0XFF858383) ,fontSize: 11,fontWeight: FontWeight.w500),
               focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: ColorUtility.secondary, width: 2),
               ),
