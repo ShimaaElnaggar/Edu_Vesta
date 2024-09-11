@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class ExpansionListWidget extends StatefulWidget {
   final String title;
-  final Widget child;
+    final Widget child;
   const ExpansionListWidget({
     required this.title,
     required this.child,
@@ -50,7 +50,7 @@ class _ExpansionListWidgetState extends State<ExpansionListWidget> {
             },
           ),
         ),
-        SizedBox(height: 8.0),
+        const SizedBox(height: 8.0),
         if (isExpanded)
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),

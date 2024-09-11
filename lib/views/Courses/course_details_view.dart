@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:edu_vesta/models/course.dart';
+import 'package:edu_vesta/widgets/arrow_back.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloc/course/course_bloc.dart';
 import '../../bloc/lecture/lecture_bloc.dart';
-import '../../utils/color_utility.dart';
 import '../../widgets/course_options_widget.dart';
 import '../../widgets/lecture_chips_widget.dart';
 import '../../widgets/video_box_widget.dart';
@@ -121,17 +121,9 @@ class _CourseDetailsViewState extends State<CourseDetailsView> {
                 ),
               ),
             )),
-        Positioned(
+        const Positioned(
           top: 20,
-          child: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios_new,
-              color: ColorUtility.primary,
-            ),
-          ),
+          child: ArrowBack(),
         ),
       ],
     ));

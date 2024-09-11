@@ -1,8 +1,11 @@
+
+
+import 'package:edu_vesta/views/Cart/payment_methods.dart';
 import 'package:edu_vesta/views/profile/profile_view.dart';
 import 'package:flutter/material.dart';
 import '../../utils/color_utility.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../widgets/home_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomeView extends StatefulWidget {
   static const id = 'Home';
@@ -18,7 +21,7 @@ class _HomeViewState extends State<HomeView> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> widgetsOptions = [
     HomeWidget(),
-    ProfileView(),
+    PaymentMethodsView(),
     Text(
       'Search',
       style: optionStyle,
@@ -34,6 +37,7 @@ class _HomeViewState extends State<HomeView> {
       selectedIndex = index;
     });
   }
+  String profileImageUrl = FirebaseAuth.instance.currentUser?.photoURL ?? '';
 
   @override
   Widget build(BuildContext context) {
@@ -48,40 +52,42 @@ class _HomeViewState extends State<HomeView> {
               selectedItemColor: ColorUtility.secondary,
               unselectedItemColor: ColorUtility.primary,
               type: BottomNavigationBarType.shifting,
-              items: const [
-                BottomNavigationBarItem(
+              items:  [
+                const BottomNavigationBarItem(
                   backgroundColor: Colors.white,
                   label: '',
                   icon: Icon(
                     Icons.home,
-                    size: 18,
+                    size: 20,
                   ),
                 ),
-                BottomNavigationBarItem(
-                    icon: FaIcon(
-                      FontAwesomeIcons.bookOpen,
-                      size: 18,
-                    ),
+                 BottomNavigationBarItem(
+                    icon: Image.asset('assets/images/courses.png',height: 20, width: 20,color: ColorUtility.primary,),
                     backgroundColor: Colors.white,
                     label: ''),
-                BottomNavigationBarItem(
+                const BottomNavigationBarItem(
                     icon: Icon(
                       Icons.search,
-                      size: 18,
+                      size: 20,
                     ),
                     backgroundColor: Colors.white,
                     label: ''),
-                BottomNavigationBarItem(
-                    icon: FaIcon(
-                      FontAwesomeIcons.message,
-                      size: 18,
-                    ),
-                    backgroundColor: Colors.white,
-                    label: ''),
-                BottomNavigationBarItem(
+                const BottomNavigationBarItem(
                     icon: Icon(
-                      Icons.person,
-                      size: 18,
+                      Icons.chat_bubble_outline,
+                      size: 20,
+                    ),
+                    backgroundColor: Colors.white,
+                    label: ''),
+                BottomNavigationBarItem(
+                    icon: CircleAvatar(
+                      radius: 12,
+                      backgroundColor: ColorUtility.secondary,
+                      backgroundImage: profileImageUrl.isNotEmpty
+                          ? NetworkImage(profileImageUrl) as ImageProvider<Object>
+                          : const NetworkImage(
+                        'https://th.bing.com/th/id/OIP.sUtuDAldRIExk4haK9HB1AAAAA?rs=1&pid=ImgDetMain',
+                      ),
                     ),
                     backgroundColor: Colors.white,
                     label: ''),

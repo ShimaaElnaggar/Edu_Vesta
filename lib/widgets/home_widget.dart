@@ -1,3 +1,4 @@
+
 import 'package:edu_vesta/widgets/cart_Icon.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   }
 
   Future<void> _loadGreetingMessage() async {
+    await PreferencesServices.initPreferences();
     String userAction =
         PreferencesServices.prefs!.getString('userAction') ?? '';
     _userName = FirebaseAuth.instance.currentUser?.displayName ?? "";
