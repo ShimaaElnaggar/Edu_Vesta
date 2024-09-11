@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../utils/color_utility.dart';
 import '../../widgets/custom_elevated_button.dart';
-import 'confirm_password_view.dart';
+
 
 class ResetPasswordView extends StatefulWidget {
   static const String id = 'reset_password';
@@ -40,7 +40,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Password reset link sent')),
       );
-      Navigator.pushNamed(context, ConfirmPasswordView.id);
+
     } catch (e) {
       print('Error resetting password: $e');
       if (e is FirebaseAuthException) {
