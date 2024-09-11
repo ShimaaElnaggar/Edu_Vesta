@@ -46,6 +46,8 @@ class _LoginViewState extends State<LoginView> {
             controller: emailController,
             hint: 'Demo@gmail.com',
             label: 'Email',
+            validator:
+                (value) => value!.isEmpty? 'Email is required' : null,
             keyboardType: TextInputType.emailAddress,
           ),
           const SizedBox(
@@ -55,6 +57,8 @@ class _LoginViewState extends State<LoginView> {
             controller: passwordController,
             hint: '***********',
             label: 'Password',
+            validator:
+                (value) => value!.isEmpty? 'Password is required' : null,
             obscureText: true,
             keyboardType: TextInputType.visiblePassword,
           ),

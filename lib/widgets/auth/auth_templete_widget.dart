@@ -6,6 +6,8 @@ import 'package:edu_vesta/widgets/custom_elevated_button.dart';
 import 'package:edu_vesta/widgets/custom_text_button.dart';
 import 'package:flutter/material.dart';
 
+import '../../views/Login/reset_password_view.dart';
+
 class AuthTemplateWidget extends StatefulWidget {
   final Future<void> Function()? onLogin;
   final Future<void> Function()? onSignUp;
@@ -176,7 +178,9 @@ class _AuthTemplateWidgetState extends State<AuthTemplateWidget> {
                               color: ColorUtility.secondary,
                               fontWeight: FontWeight.w500
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context,ResetPasswordView.id);
+                            },
                           ),
                         ],
                       ),

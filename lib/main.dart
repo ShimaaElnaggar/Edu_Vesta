@@ -7,9 +7,10 @@ import 'package:edu_vesta/views/Cart/payment_methods.dart';
 import 'package:edu_vesta/views/Categories/show_category_courses.dart';
 import 'package:edu_vesta/views/Courses/course_details_view.dart';
 import 'package:edu_vesta/views/Home/home_view.dart';
+import 'package:edu_vesta/views/Login/confirm_password_view.dart';
 import 'package:edu_vesta/views/Login/login_view.dart';
+import 'package:edu_vesta/views/Login/reset_password_view.dart';
 import 'package:edu_vesta/views/On%20Boarding/on_boarding_view.dart';
-import 'package:edu_vesta/views/Reset%20Password/reset_password_view.dart';
 import 'package:edu_vesta/views/Sign%20UP/sign_up_view.dart';
 import 'package:edu_vesta/views/Splash/splash_view.dart';
 import 'package:edu_vesta/views/profile/edit_user_name.dart';
@@ -69,11 +70,13 @@ class MyApp extends StatelessWidget {
                     ));
             case EditUserNameView.id:
               return MaterialPageRoute(builder: (context) => const EditUserNameView());
-          case HomeView.id:
-            return MaterialPageRoute(builder: (context) => const HomeView());
           case ShowCategoryCoursesView.id:
             return MaterialPageRoute(
                 builder: (context) => const ShowCategoryCoursesView(rankValue: 'top_rated',));
+          case HomeView.id:
+            return MaterialPageRoute(builder: (context) => const HomeView());
+            case ConfirmPasswordView.id:
+              return MaterialPageRoute(builder: (context) => const ConfirmPasswordView());
           case ResetPasswordView.id:
             return MaterialPageRoute(
                 builder: (context) => const ResetPasswordView());

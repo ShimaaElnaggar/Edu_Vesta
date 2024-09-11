@@ -53,6 +53,8 @@ class _SignUpViewState extends State<SignUpView> {
             controller: nameController,
             hint: 'Shimaa Elnaggar ',
             label: 'Full Name',
+            validator:
+                (value) => value!.isEmpty? 'Full Name is required' : null,
             keyboardType: TextInputType.emailAddress,
           ),
           const SizedBox(
@@ -62,6 +64,7 @@ class _SignUpViewState extends State<SignUpView> {
             controller: emailController,
             hint: 'Demo@gmail.com',
             label: 'Email',
+            validator: (value) => value!.isEmpty? 'Email is required' : null,
             keyboardType: TextInputType.emailAddress,
           ),
           const SizedBox(
@@ -72,6 +75,8 @@ class _SignUpViewState extends State<SignUpView> {
             hint: '***********',
             label: 'Password',
             obscureText: true,
+            validator:
+                (value) => value!.isEmpty? 'Password is required' : null,
             keyboardType: TextInputType.visiblePassword,
           ),
           const SizedBox(
@@ -82,6 +87,8 @@ class _SignUpViewState extends State<SignUpView> {
             hint: '***********',
             label: 'Confirm Password',
             obscureText: true,
+            validator:
+                (value) => value!.isEmpty? 'Confirm Password is required' : null,
             keyboardType: TextInputType.visiblePassword,
           ),
         ],
