@@ -1,9 +1,11 @@
-
+import 'package:edu_vesta/views/Courses/top_courses_view.dart';
 import 'package:edu_vesta/widgets/cart_Icon.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../services/preferences_services.dart';
 import '../utils/color_utility.dart';
+import '../views/Categories/categories_view.dart';
+import '../views/Courses/best_seller_courses_view.dart';
 import 'categories_widget.dart';
 import 'courses_widget.dart';
 import 'label_widget.dart';
@@ -25,9 +27,8 @@ class _HomeWidgetState extends State<HomeWidget> {
   }
 
   Future<void> _loadGreetingMessage() async {
-    await PreferencesServices.initPreferences();
     String userAction =
-        PreferencesServices.prefs!.getString('userAction') ?? '';
+        await PreferencesServices.prefs!.getString('userAction') ?? '';
     _userName = FirebaseAuth.instance.currentUser?.displayName ?? "";
 
     if (userAction == 'login') {
@@ -80,25 +81,37 @@ class _HomeWidgetState extends State<HomeWidget> {
             ),
             LabelWidget(
               name: 'Categories',
-              onSeeAllClicked: () {},
+              onSeeAllClicked: () {
+                Navigator.pushNamed(context, CategoriesView.id);
+              },
             ),
             const CategoriesWidget(),
             const SizedBox(
-              height: 10,
+              height: 20,
             ),
             LabelWidget(
               name: 'Top Courses',
-              onSeeAllClicked: () {},
+              onSeeAllClicked: () {
+                Navigator.pushNamed(context, TopCoursesView.id);
+              },
             ),
-            const CoursesWidget(rankValue: 'top_rated'),
+            CoursesWidget(
+              rankValue: 'top_rated',
+              limitCourses: true,
+            ),
             const SizedBox(
               height: 20,
             ),
             LabelWidget(
               name: 'Best Seller',
-              onSeeAllClicked: () {},
+              onSeeAllClicked: () {
+                Navigator.pushNamed(context, BestSellerCoursesView.id);
+              },
             ),
-            const CoursesWidget(rankValue: 'best_seller'),
+            CoursesWidget(
+              rankValue: 'best_seller',
+              limitCourses: true,
+            ),
           ],
         ),
       ),

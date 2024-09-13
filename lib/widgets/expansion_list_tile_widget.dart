@@ -1,20 +1,20 @@
 import 'package:edu_vesta/utils/color_utility.dart';
 import 'package:flutter/material.dart';
 
-class ExpansionListWidget extends StatefulWidget {
+class ExpansionListTileWidget extends StatefulWidget {
   final String title;
     final Widget child;
-  const ExpansionListWidget({
+  const ExpansionListTileWidget({
     required this.title,
     required this.child,
     super.key,
   });
 
   @override
-  State<ExpansionListWidget> createState() => _ExpansionListWidgetState();
+  State<ExpansionListTileWidget> createState() => _ExpansionListTileWidgetState();
 }
 
-class _ExpansionListWidgetState extends State<ExpansionListWidget> {
+class _ExpansionListTileWidgetState extends State<ExpansionListTileWidget> {
   bool isExpanded = false;
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class _ExpansionListWidgetState extends State<ExpansionListWidget> {
                     vertical: BorderSide.none, horizontal: BorderSide.none),
           ),
           child: ListTile(
-            leading: Text(
+            title: Text(
               widget.title,
               style:
                   const TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500),

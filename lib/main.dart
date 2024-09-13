@@ -4,10 +4,12 @@ import 'package:edu_vesta/firebase_options.dart';
 import 'package:edu_vesta/services/preferences_services.dart';
 import 'package:edu_vesta/utils/color_utility.dart';
 import 'package:edu_vesta/views/Cart/payment_methods.dart';
-import 'package:edu_vesta/views/Categories/show_category_courses.dart';
+import 'package:edu_vesta/views/Categories/categories_view.dart';
+import 'package:edu_vesta/views/Courses/best_seller_courses_view.dart';
 import 'package:edu_vesta/views/Courses/course_details_view.dart';
+import 'package:edu_vesta/views/Courses/courses_according_to_category_view.dart';
+import 'package:edu_vesta/views/Courses/top_courses_view.dart';
 import 'package:edu_vesta/views/Home/home_view.dart';
-import 'package:edu_vesta/views/Login/confirm_password_view.dart';
 import 'package:edu_vesta/views/Login/login_view.dart';
 import 'package:edu_vesta/views/Login/reset_password_view.dart';
 import 'package:edu_vesta/views/On%20Boarding/on_boarding_view.dart';
@@ -18,8 +20,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'bloc/course/course_bloc.dart';
 import 'bloc/lecture/lecture_bloc.dart';
+
+import 'models/course.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,50 +53,65 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      scrollBehavior: _CustomScrollBehavior(),
-      debugShowCheckedModeBanner: false,
-      title: ' Edu Vesta ',
-      theme: ThemeData(
-        fontFamily: 'PlusJakartaSans',
-        colorScheme: ColorScheme.fromSeed(seedColor: ColorUtility.primary),
-        scaffoldBackgroundColor: ColorUtility.scaffoldBackground,
-      ),
-      onGenerateRoute: (settings) {
-        final String routeName = settings.name ?? '';
-        final dynamic data = settings.arguments;
-        switch (routeName) {
-          case PaymentMethodsView.id:
-            return MaterialPageRoute(builder: (context) => const PaymentMethodsView());
-          case CourseDetailsView.id:
-            return MaterialPageRoute(
-                builder: (context) => CourseDetailsView(
-                      course: data,
-                    ));
+    return ScreenUtilInit(
+      child: MaterialApp(
+        scrollBehavior: _CustomScrollBehavior(),
+        debugShowCheckedModeBanner: false,
+        title: ' Edu Vesta ',
+        theme: ThemeData(
+          fontFamily: 'PlusJakartaSans',
+          colorScheme: ColorScheme.fromSeed(seedColor: ColorUtility.primary),
+          scaffoldBackgroundColor: ColorUtility.scaffoldBackground,
+        ),
+        onGenerateRoute: (settings) {
+          final String routeName = settings.name ?? '';
+          final dynamic data = settings.arguments;
+          switch (routeName) {
+            case PaymentMethodsView.id:
+              return MaterialPageRoute(
+                  builder: (context) => const PaymentMethodsView());
+            case CourseDetailsView.id:
+              return MaterialPageRoute(
+                  builder: (context) => CourseDetailsView(
+                        course: data,
+                      ));
             case EditUserNameView.id:
-              return MaterialPageRoute(builder: (context) => const EditUserNameView());
-          case ShowCategoryCoursesView.id:
-            return MaterialPageRoute(
-                builder: (context) => const ShowCategoryCoursesView(rankValue: 'top_rated',));
-          case HomeView.id:
-            return MaterialPageRoute(builder: (context) => const HomeView());
-            case ConfirmPasswordView.id:
-              return MaterialPageRoute(builder: (context) => const ConfirmPasswordView());
-          case ResetPasswordView.id:
-            return MaterialPageRoute(
-                builder: (context) => const ResetPasswordView());
+              return MaterialPageRoute(
+                  builder: (context) => const EditUserNameView());
+            case BestSellerCoursesView.id:
+              return MaterialPageRoute(
+                  builder: (context) => BestSellerCoursesView());
+            case TopCoursesView.id:
+              return MaterialPageRoute(builder: (context) => TopCoursesView());
+            case CoursesAccordingToCategoryView.id:
+              return MaterialPageRoute(
+                  builder: (context) => CoursesAccordingToCategoryView(
+                        category: data['category'],
+                        courses: data['courses'] as List<Course>,
+                      ));
+            case CategoriesView.id:
+              return MaterialPageRoute(
+                  builder: (context) => const CategoriesView());
+            case HomeView.id:
+              return MaterialPageRoute(builder: (context) => const HomeView());
+            case ResetPasswordView.id:
+              return MaterialPageRoute(
+                  builder: (context) => const ResetPasswordView());
             case SignUpView.id:
-              return MaterialPageRoute(builder: (context) => const SignUpView());
-          case LoginView.id:
-            return MaterialPageRoute(builder: (context) => const LoginView());
-          case OnBoardingView.id:
-            return MaterialPageRoute(
-                builder: (context) => const OnBoardingView());
-          default:
-            return MaterialPageRoute(builder: (context) => const SplashView());
-        }
-      },
-      initialRoute: SplashView.id,
+              return MaterialPageRoute(
+                  builder: (context) => const SignUpView());
+            case LoginView.id:
+              return MaterialPageRoute(builder: (context) => const LoginView());
+            case OnBoardingView.id:
+              return MaterialPageRoute(
+                  builder: (context) => const OnBoardingView());
+            default:
+              return MaterialPageRoute(
+                  builder: (context) => const SplashView());
+          }
+        },
+        initialRoute: SplashView.id,
+      ),
     );
   }
 }

@@ -6,6 +6,6 @@ class ImageUtility{
   static const String frame = '${_path}frame.png';
   static const String offlineAccess = '${_path}offline_access.png';
   static const String progressTracking = '${_path}progress_tracking.png';
-  static const String facebook = '${_path}facebook.png';
   static const String google = '${_path}google.png';
+  static const String defaultCourse = '${_path}default.jpg';
 }
