@@ -1,4 +1,5 @@
-import 'package:edu_vesta/widgets/arrow_back.dart';
+
+import 'package:edu_vesta/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:paymob_payment/paymob_payment.dart';
@@ -21,23 +22,7 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ArrowBack(),
-                Center(
-                  child: Text(
-                    'Payment Method',
-                    style: TextStyle(
-                      color: ColorUtility.midBlack,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
-                SizedBox(width: 40),
-              ],
-            ),
+            const HeaderWidget(title: 'Payment Method'),
             const SizedBox(
               height: 15,
             ),

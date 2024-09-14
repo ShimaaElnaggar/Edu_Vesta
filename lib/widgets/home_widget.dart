@@ -2,6 +2,7 @@ import 'package:edu_vesta/views/Courses/top_courses_view.dart';
 import 'package:edu_vesta/widgets/cart_Icon.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../services/preferences_services.dart';
 import '../utils/color_utility.dart';
 import '../views/Categories/categories_view.dart';

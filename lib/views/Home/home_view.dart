@@ -1,11 +1,13 @@
 
-
-import 'package:edu_vesta/views/Cart/payment_methods.dart';
 import 'package:edu_vesta/views/profile/profile_view.dart';
+import 'package:edu_vesta/widgets/courses_headers_widget.dart';
 import 'package:flutter/material.dart';
 import '../../utils/color_utility.dart';
+import '../../widgets/courses_widget.dart';
 import '../../widgets/home_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+import '../Courses/courses_view.dart';
 
 class HomeView extends StatefulWidget {
   static const id = 'Home';
@@ -21,11 +23,8 @@ class _HomeViewState extends State<HomeView> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> widgetsOptions = [
     HomeWidget(),
-    PaymentMethodsView(),
-    Text(
-      'Search',
-      style: optionStyle,
-    ),
+    CoursesView(),
+   CoursesHeadersWidget(),
     Text(
       'Chats',
       style: optionStyle,
@@ -62,7 +61,10 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ),
                  BottomNavigationBarItem(
-                    icon: Image.asset('assets/images/courses.png',height: 20, width: 20,color: ColorUtility.primary,),
+                    icon: Image.asset('assets/images/courses.png',
+                      height: 20,
+                      width: 20,
+                      color: selectedIndex == 1? ColorUtility.secondary : ColorUtility.primary,),
                     backgroundColor: Colors.white,
                     label: ''),
                 const BottomNavigationBarItem(

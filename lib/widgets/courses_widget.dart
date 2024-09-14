@@ -3,6 +3,8 @@ import 'package:edu_vesta/utils/color_utility.dart';
 import 'package:edu_vesta/utils/image_utility.dart';
 import 'package:edu_vesta/widgets/star_rating_widget.dart';
 import 'package:enhanced_future_builder/enhanced_future_builder.dart';
+import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../models/course.dart';
@@ -77,62 +79,36 @@ class _CoursesWidgetState extends State<CoursesWidget> {
           courses = courses.take(2).toList();
         }
         return GridView.count(
+          scrollDirection: Axis.vertical,
           mainAxisSpacing: 15,
           crossAxisSpacing: 15,
           shrinkWrap: true,
           crossAxisCount: ScreenUtil().screenWidth > 760 ? 3 : 2,
           children: List.generate(courses.length, (index) {
-            return InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, CourseDetailsView.id,
-                    arguments: courses[index]);
-              },
-              child: Container(
-                height: ScreenUtil().screenHeight,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
+            return Container(
+              height: 280,
+              width: 158.72,
+              child: InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, CourseDetailsView.id,
+                      arguments: courses[index]);
+                },
+                child: SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       FadeInUp(
                         child: Container(
-                          height: (ScreenUtil().screenHeight == 667)
-                              ? 75
-                              : (ScreenUtil().screenHeight == 896)
-                                  ? 94
-                                  : (ScreenUtil().screenHeight == 844)
-                                      ? 82
-                                      : (ScreenUtil().screenHeight == 932)
-                                          ? 102
-                                          : (ScreenUtil().screenHeight == 915)
-                                              ? 93.5
-                                              : (ScreenUtil().screenHeight ==
-                                                      740)
-                                                  ? 67.5
-                                                  : (ScreenUtil()
-                                                              .screenHeight ==
-                                                          914)
-                                                      ? 93
-                                                      : (ScreenUtil()
-                                                                  .screenHeight ==
-                                                              1009)
-                                                          ? 87
-                                                          : (ScreenUtil()
-                                                                      .screenHeight ==
-                                                                  822)
-                                                              ? 90
-                                                              : 105.23,
-                          width: 157.48,
+                          height: kIsWeb? 105.23:  90.23,
+                          width: 157.48 ,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             image: DecorationImage(
                               image: courses[index].image != null
                                   ? NetworkImage(
-                                      courses[index].image!,
-                                    )
+                                courses[index].image!,
+                              )
                                   : AssetImage(ImageUtility.defaultCourse),
                               fit: BoxFit.cover,
                             ),
@@ -162,6 +138,7 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                           ),
                         ],
                       ),
+
                       Text(
                         courses[index].title.toString(),
                         style: const TextStyle(

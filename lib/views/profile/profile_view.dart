@@ -1,16 +1,15 @@
-
-
 import 'package:edu_vesta/utils/color_utility.dart';
 import 'package:edu_vesta/views/profile/edit_user_name.dart';
 import 'package:edu_vesta/widgets/cart_Icon.dart';
 import 'package:edu_vesta/widgets/custom_text_button.dart';
-import 'package:edu_vesta/widgets/expansion_list_widget.dart';
+import 'package:edu_vesta/widgets/expansion_list_tile_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 import '../../services/preferences_services.dart';
+import '../Login/login_view.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -56,6 +55,7 @@ class _ProfileViewState extends State<ProfileView> {
     });
   }
 
+  bool signingOut = false;
   String profileImageUrl = FirebaseAuth.instance.currentUser?.photoURL ?? '';
   @override
   Widget build(BuildContext context) {
@@ -188,7 +188,7 @@ class _ProfileViewState extends State<ProfileView> {
                 height: 200,
                 child: ListView(
                   children: [
-                    ExpansionListWidget(
+                    ExpansionListTileWidget(
                       title: 'Edit',
                       child: ListTile(
                         leading: const Icon(
@@ -204,7 +204,7 @@ class _ProfileViewState extends State<ProfileView> {
                         },
                       ),
                     ),
-                    ExpansionListWidget(
+                    ExpansionListTileWidget(
                       title: 'Settings',
                       child: ListTile(
                         leading: Icon(
@@ -217,7 +217,7 @@ class _ProfileViewState extends State<ProfileView> {
                         onTap: toggleTheme,
                       ),
                     ),
-                    const ExpansionListWidget(
+                    const ExpansionListTileWidget(
                       title: 'About Us',
                       child: Text(
                         ' Edu vesta App  is a specialized application \n '
@@ -240,17 +240,27 @@ class _ProfileViewState extends State<ProfileView> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     CustomTextButton(
-                        label: 'Logout',
-                        textStyle: const TextStyle(
-                          color: Color(0XFFEA4335),
-                          fontSize: 15,
-                          fontWeight: FontWeight.w700,
-                        ),
-                        onPressed: () {
-                          FirebaseAuth.instance.signOut().then((value) {
-                            Navigator.pop(context);
-                          });
-                        }),
+                      label: 'Logout',
+                      textStyle: const TextStyle(
+                        color: Color(0XFFEA4335),
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      onPressed: () async {
+                        setState(() {
+                          signingOut = true;
+                        });
+
+                        await FirebaseAuth.instance.signOut();
+
+                        setState(() {
+                          signingOut = false;
+                        });
+
+                        Navigator.pushNamed(context, LoginView.id);
+                      },
+                    ),
+
                   ],
                 ),
               ),
