@@ -1,5 +1,4 @@
 import 'package:edu_vesta/views/profile/profile_view.dart';
-import 'package:edu_vesta/widgets/courses_headers_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../services/preferences_services.dart';
@@ -10,6 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import '../Chats/chats_view.dart';
 import '../Courses/courses_view.dart';
+import '../Search/search_view.dart';
 
 class HomeView extends StatefulWidget {
   static const id = 'Home';
@@ -25,7 +25,7 @@ class _HomeViewState extends State<HomeView> {
   static List<Widget> widgetsOptions = [
     HomeWidget(),
     CoursesView(),
-    CoursesHeadersWidget(),
+    SearchView(),
     ChatsView(),
     ProfileView(),
   ];
