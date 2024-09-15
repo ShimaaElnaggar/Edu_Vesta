@@ -122,4 +122,29 @@ class AuthCubit extends Cubit<AuthState> {
     }
     PreferencesServices.prefs!.setString('userAction','signup');
   }
+  Future<void> updateDisplayName({
+    required BuildContext context,
+    required String newName,
+  }) async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+
+      if (user != null) {
+        await user.updateDisplayName(newName);
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('User name updated successfully.'),
+          ),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Failed to update user name.'),
+        ),
+      );
+    }
+  }
+
 }

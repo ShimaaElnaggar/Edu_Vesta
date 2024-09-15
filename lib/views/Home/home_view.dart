@@ -1,9 +1,10 @@
-
 import 'package:edu_vesta/views/profile/profile_view.dart';
 import 'package:edu_vesta/widgets/courses_headers_widget.dart';
 import 'package:flutter/material.dart';
+
+import '../../services/preferences_services.dart';
 import '../../utils/color_utility.dart';
-import '../../widgets/courses_widget.dart';
+
 import '../../widgets/home_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -24,7 +25,7 @@ class _HomeViewState extends State<HomeView> {
   static const List<Widget> widgetsOptions = [
     HomeWidget(),
     CoursesView(),
-   CoursesHeadersWidget(),
+    CoursesHeadersWidget(),
     Text(
       'Chats',
       style: optionStyle,
@@ -36,7 +37,20 @@ class _HomeViewState extends State<HomeView> {
       selectedIndex = index;
     });
   }
+
   String profileImageUrl = FirebaseAuth.instance.currentUser?.photoURL ?? '';
+  @override
+  void initState() {
+    super.initState();
+    _init();
+  }
+
+  Future<void> _init() async {
+    setState(() {
+      profileImageUrl =
+          PreferencesServices.prefs?.getString('profileImageUrl') ?? '';
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,13 +59,13 @@ class _HomeViewState extends State<HomeView> {
         bottomNavigationBar: Stack(
           children: [
             BottomNavigationBar(
-              backgroundColor: Colors.white,
+              backgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
               currentIndex: selectedIndex,
               onTap: onItemSelected,
               selectedItemColor: ColorUtility.secondary,
               unselectedItemColor: ColorUtility.primary,
               type: BottomNavigationBarType.shifting,
-              items:  [
+              items: [
                 const BottomNavigationBarItem(
                   backgroundColor: Colors.white,
                   label: '',
@@ -60,11 +74,15 @@ class _HomeViewState extends State<HomeView> {
                     size: 20,
                   ),
                 ),
-                 BottomNavigationBarItem(
-                    icon: Image.asset('assets/images/courses.png',
+                BottomNavigationBarItem(
+                    icon: Image.asset(
+                      'assets/images/courses.png',
                       height: 20,
                       width: 20,
-                      color: selectedIndex == 1? ColorUtility.secondary : ColorUtility.primary,),
+                      color: selectedIndex == 1
+                          ? ColorUtility.secondary
+                          : ColorUtility.primary,
+                    ),
                     backgroundColor: Colors.white,
                     label: ''),
                 const BottomNavigationBarItem(
@@ -86,10 +104,10 @@ class _HomeViewState extends State<HomeView> {
                       radius: 12,
                       backgroundColor: ColorUtility.secondary,
                       backgroundImage: profileImageUrl.isNotEmpty
-                          ? NetworkImage(profileImageUrl) as ImageProvider<Object>
+                          ? NetworkImage(profileImageUrl)
                           : const NetworkImage(
-                        'https://th.bing.com/th/id/OIP.sUtuDAldRIExk4haK9HB1AAAAA?rs=1&pid=ImgDetMain',
-                      ),
+                              'https://th.bing.com/th/id/OIP.sUtuDAldRIExk4haK9HB1AAAAA?rs=1&pid=ImgDetMain',
+                            ),
                     ),
                     backgroundColor: Colors.white,
                     label: ''),

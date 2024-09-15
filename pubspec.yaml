@@ -47,6 +47,8 @@ dependencies:
   flutter_dotenv: ^5.1.0
   animate_do: ^3.3.4
   flutter_screenutil: ^5.9.3
+  youtube_player_flutter: ^8.1.2
+  provider: ^6.1.2
   video_box:
     git:
       url: https://github.com/mahmoudelgharabawi/flutter_video_box.git
