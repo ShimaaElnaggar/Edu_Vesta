@@ -6,6 +6,8 @@ class ColorUtility {
   static const lightGrey = Color(0xffE0E0E0);
   static const midGrey = Color(0xffEBEBEB);
   static const darkGray = Color(0xFF545454);
+  static const kGrey = Color(0xFF4B4B4B);
+  static const blueGray = Color(0xFF37474F);
   static const midBlack = Color(0xff1D1B20);
   static const kBlack = Color(0xFF060302);
   static const darkBlue = Color(0xFF202244);

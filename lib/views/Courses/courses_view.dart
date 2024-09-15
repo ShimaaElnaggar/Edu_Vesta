@@ -24,7 +24,7 @@ class _CoursesViewState extends State<CoursesView> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(10.0),
           child: Container(
             height: ScreenUtil().screenHeight,
             child: Column(

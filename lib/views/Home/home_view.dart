@@ -8,6 +8,7 @@ import '../../utils/color_utility.dart';
 import '../../widgets/home_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../Chats/chats_view.dart';
 import '../Courses/courses_view.dart';
 
 class HomeView extends StatefulWidget {
@@ -20,16 +21,12 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   int selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> widgetsOptions = [
+
+  static List<Widget> widgetsOptions = [
     HomeWidget(),
     CoursesView(),
     CoursesHeadersWidget(),
-    Text(
-      'Chats',
-      style: optionStyle,
-    ),
+    ChatsView(),
     ProfileView(),
   ];
   void onItemSelected(int index) {
@@ -59,7 +56,8 @@ class _HomeViewState extends State<HomeView> {
         bottomNavigationBar: Stack(
           children: [
             BottomNavigationBar(
-              backgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+              backgroundColor:
+                  Theme.of(context).bottomNavigationBarTheme.backgroundColor,
               currentIndex: selectedIndex,
               onTap: onItemSelected,
               selectedItemColor: ColorUtility.secondary,

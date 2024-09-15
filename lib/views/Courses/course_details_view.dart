@@ -8,7 +8,7 @@ import '../../bloc/course/course_bloc.dart';
 import '../../bloc/lecture/lecture_bloc.dart';
 import '../../widgets/course_options_widget.dart';
 import '../../widgets/lecture_chips_widget.dart';
-import '../../widgets/video_box_widget.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class CourseDetailsView extends StatefulWidget {
   static const String id = 'course_details';
@@ -46,19 +46,34 @@ class _CourseDetailsViewState extends State<CourseDetailsView> {
     super.didChangeDependencies();
   }
 
+  String? urlVideo;
+  YoutubePlayerController? controller;
+
+  g({
+    required String url,
+  }) {
+    final videoId = YoutubePlayer.convertUrlToId("$url");
+    controller = YoutubePlayerController(
+      initialVideoId: videoId!,
+      flags: YoutubePlayerFlags(
+        autoPlay: false,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(
       children: [
-        // video bloc
+
         BlocBuilder<LectureBloc, LectureState>(builder: (ctx, state) {
           var stateEx = state is LectureChosenState ? state : null;
 
           if (stateEx == null) {
             return const SizedBox.shrink();
           }
-
+          g(url: stateEx.lecture.lectureUrl ?? '');
           return SizedBox(
             height: 250,
             child: stateEx.lecture.lectureUrl == null ||
@@ -71,9 +86,22 @@ class _CourseDetailsViewState extends State<CourseDetailsView> {
                         fontSize: 20,
                         fontWeight: FontWeight.bold),
                   ))
-                : VideoBoxWidget(
-                    url: stateEx.lecture.lectureUrl ?? '',
+                : YoutubePlayer(
+              controller: controller!,
+              showVideoProgressIndicator: true,
+              bottomActions: [
+                CurrentPosition(),
+                ProgressBar(
+                  isExpanded: true,
+                  colors: ProgressBarColors(
+                    handleColor: Colors.white,
+                    playedColor: Colors.red,
                   ),
+                ),
+                RemainingDuration(),
+                PlaybackSpeedButton(),
+              ],
+            ),
           );
         }),
         Align(
@@ -86,7 +114,7 @@ class _CourseDetailsViewState extends State<CourseDetailsView> {
                       topRight: Radius.circular(25))),
               duration: const Duration(seconds: 3),
               alignment: Alignment.bottomCenter,
-              // height: MediaQuery.sizeOf(context).height - 220,
+
               height:
                   applyChanges ? MediaQuery.sizeOf(context).height - 220 : null,
               curve: Curves.easeInOut,
@@ -123,6 +151,7 @@ class _CourseDetailsViewState extends State<CourseDetailsView> {
             )),
         const Positioned(
           top: 20,
+          left: 20,
           child: ArrowBack(),
         ),
       ],
@@ -164,20 +193,23 @@ class __BodyWidgetState extends State<_BodyWidget> {
                         courseOption: state.courseOption,
                         onLectureChosen: (lecture) async {
                           try {
-                            FirebaseFirestore.instance
+                            final userProgressDoc = FirebaseFirestore.instance
                                 .collection('course_user_progress')
-                                .doc(FirebaseAuth.instance.currentUser!.uid)
-                                .update({
-                              context.read<CourseBloc>().course!.id!:
-                                  FieldValue.increment(1)
-                            });
+                                .doc(FirebaseAuth.instance.currentUser!.uid);
+
+                            final docSnapshot = await userProgressDoc.get();
+
+                            if (docSnapshot.exists) {
+                              await userProgressDoc.update({
+                                context.read<CourseBloc>().course!.id!: FieldValue.increment(1)
+                              });
+                            } else {
+                              await userProgressDoc.set({
+                                context.read<CourseBloc>().course!.id!: 1
+                              });
+                            }
                           } catch (e) {
-                            FirebaseFirestore.instance
-                                .collection('course_user_progress')
-                                .doc(FirebaseAuth.instance.currentUser!.uid)
-                                .set({
-                              context.read<CourseBloc>().course!.id!: 1
-                            });
+                            print('Error updating user progress: $e');
                           }
                           context
                               .read<LectureBloc>()

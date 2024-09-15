@@ -6,6 +6,7 @@ import 'package:edu_vesta/services/preferences_services.dart';
 import 'package:edu_vesta/utils/color_utility.dart';
 import 'package:edu_vesta/views/Cart/payment_methods.dart';
 import 'package:edu_vesta/views/Categories/categories_view.dart';
+import 'package:edu_vesta/views/Chats/conversation_view.dart';
 import 'package:edu_vesta/views/Courses/best_seller_courses_view.dart';
 import 'package:edu_vesta/views/Courses/course_details_view.dart';
 import 'package:edu_vesta/views/Courses/courses_according_to_category_view.dart';
@@ -85,6 +86,9 @@ class MyApp extends StatelessWidget {
               final String routeName = settings.name ?? '';
               final dynamic data = settings.arguments;
               switch (routeName) {
+                case ConversationView.id:
+                  return MaterialPageRoute(
+                      builder: (context) => ConversationView());
                 case PaymentMethodsView.id:
                   return MaterialPageRoute(
                       builder: (context) => const PaymentMethodsView());
