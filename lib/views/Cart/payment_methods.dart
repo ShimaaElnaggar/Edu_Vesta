@@ -1,4 +1,4 @@
-
+import 'package:url_launcher/url_launcher.dart';
 import 'package:edu_vesta/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -39,14 +39,6 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
               height: 15,
             ),
             payMobMethod(context),
-            ListTile(
-              title: const Text('PayPal'),
-              onTap: () {},
-            ),
-            ListTile(
-              title: const Text('Apple Pay'),
-              onTap: () {},
-            ),
           ],
         ),
       ),
@@ -55,33 +47,35 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
 
   Container payMobMethod(BuildContext context) {
     return Container(
-            decoration: BoxDecoration(
-              color: isExpanded ? Colors.white : ColorUtility.midGrey,
-              borderRadius: BorderRadius.circular(8),
-              border: isExpanded
-                  ? Border.all(
-                      color: ColorUtility.secondary,
-                    )
-                  : const Border.symmetric(
-                      vertical: BorderSide.none, horizontal: BorderSide.none),
-            ),
-            child: ListTile(
-              leading: const Text(
-                'PayMob',
-                style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500),
-              ),
-              trailing: Icon(
-                Icons.adjust_outlined,
-                color: isExpanded ? ColorUtility.secondary : Colors.white,
-              ),
-              onTap: () async {
-                setState(() {
-                  isExpanded = !isExpanded;
-                });
-                await accessingToPayMobGate(context);
-              },
-            ),
-          );
+      decoration: BoxDecoration(
+        color: isExpanded ? Colors.white : ColorUtility.midGrey,
+        borderRadius: BorderRadius.circular(8),
+        border: isExpanded
+            ? Border.all(
+                color: ColorUtility.secondary,
+              )
+            : const Border.symmetric(
+                vertical: BorderSide.none, horizontal: BorderSide.none),
+      ),
+      child: ListTile(
+        leading: const Text(
+          'PayMob',
+          style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500),
+        ),
+        trailing: Icon(
+          Icons.adjust_outlined,
+          color: isExpanded ? ColorUtility.secondary : Colors.white,
+        ),
+        onTap: () async {
+          setState(() {
+            isExpanded = !isExpanded;
+          });
+          await accessingToPayMobGate(context);
+          await LauncherUrl(Uri.parse(
+              'blob:https://accept.paymob.com/d1f041af-a383-4982-ba18-1cc67641da61'));
+        },
+      ),
+    );
   }
 
   Future<void> accessingToPayMobGate(BuildContext context) async {
@@ -109,5 +103,9 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
     } else {
       print('Error: One or more environment variables are null.');
     }
+  }
+
+  LauncherUrl(Uri parse) {
+    launchUrl(parse);
   }
 }
