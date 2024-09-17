@@ -29,6 +29,11 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
           .collection('lecture')
           .get();
 
+      if (result.docs.isEmpty) {
+        print('No lectures found for course: ${course!.title}');
+        return null;
+      }
+
       return result.docs
           .map((e) => Lecture.fromJson({
         'id': e.id,
@@ -36,6 +41,7 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
       }))
           .toList();
     } catch (e) {
+      print('Error fetching lectures: $e');
       return null;
     }
   }
@@ -46,6 +52,7 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
       course = null;
     }
     course = event.course;
+    print('Course fetched: ${course?.title}');
     emit(CourseOptionStateChanges(CourseOptions.lecture));
   }
 

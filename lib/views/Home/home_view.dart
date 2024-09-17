@@ -34,8 +34,8 @@ class _HomeViewState extends State<HomeView> {
       selectedIndex = index;
     });
   }
+  late String profileImageUrl;
 
-  String profileImageUrl = FirebaseAuth.instance.currentUser?.photoURL ?? '';
   @override
   void initState() {
     super.initState();
@@ -44,6 +44,7 @@ class _HomeViewState extends State<HomeView> {
 
   Future<void> _init() async {
     setState(() {
+      profileImageUrl = FirebaseAuth.instance.currentUser?.photoURL ?? '';
       profileImageUrl =
           PreferencesServices.prefs?.getString('profileImageUrl') ?? '';
     });

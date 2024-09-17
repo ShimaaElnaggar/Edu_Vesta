@@ -1,8 +1,9 @@
 
 import 'package:edu_vesta/utils/image_utility.dart';
-import 'package:edu_vesta/widgets/courses_headers_widget.dart';
+import 'package:edu_vesta/widgets/courses/courses_data.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 
 import '../../utils/color_utility.dart';
@@ -26,7 +27,7 @@ class _CoursesViewState extends State<CoursesView> {
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Container(
-            height: ScreenUtil().screenHeight,
+            height: MediaQuery.sizeOf(context).height,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -73,7 +74,7 @@ class _CoursesViewState extends State<CoursesView> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  showCourses? CoursesHeadersWidget()
+                  showCourses? CoursesData(height: kIsWeb? 90.23:  62.23,)
                       : Center(child: Image.asset(ImageUtility.frame, width: 250, height: 350)),
               ],
             ),

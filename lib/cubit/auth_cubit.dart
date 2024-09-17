@@ -85,6 +85,7 @@ class AuthCubit extends Cubit<AuthState> {
         credentials.user!.updateDisplayName(nameController.text);
         credentials.user!.updatePhotoURL;
 
+
         if (!context.mounted) return;
 
         ScaffoldMessenger.of(context).showSnackBar(

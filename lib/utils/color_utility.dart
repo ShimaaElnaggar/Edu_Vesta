@@ -10,6 +10,7 @@ class ColorUtility {
   static const blueGray = Color(0xFF37474F);
   static const midBlack = Color(0xff1D1B20);
   static const kBlack = Color(0xFF060302);
+  static const kBlue = Color(0xFF202244);
   static const darkBlue = Color(0xFF202244);
   static const secondary = Color(0xffF5BB06);
   static const primary = Color(0xff477B72);

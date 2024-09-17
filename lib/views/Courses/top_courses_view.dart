@@ -1,4 +1,4 @@
-import 'package:edu_vesta/widgets/courses_widget.dart';
+import 'package:edu_vesta/widgets/courses/courses_widget.dart';
 import 'package:edu_vesta/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
 

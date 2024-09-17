@@ -178,7 +178,7 @@ class _ProfileViewState extends State<ProfileView> {
               height: 200,
               child: ListView(
                 children: [
-                  ExpansionListTileWidget(
+                  ExpansionListTile(
                     title: 'Edit',
                     child: ListTile(
                       leading: const Icon(
@@ -193,7 +193,7 @@ class _ProfileViewState extends State<ProfileView> {
                       },
                     ),
                   ),
-                  ExpansionListTileWidget(
+                  ExpansionListTile(
                     title: 'Settings',
                     child: ListTile(
                       leading: Icon(
@@ -210,7 +210,7 @@ class _ProfileViewState extends State<ProfileView> {
                       },
                     ),
                   ),
-                  const ExpansionListTileWidget(
+                  const ExpansionListTile(
                     title: 'About Us',
                     child: Text(
                       ' Edu vesta App  is a specialized application \n '

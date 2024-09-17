@@ -101,7 +101,9 @@ class _AuthTemplateWidgetState extends State<AuthTemplateWidget> {
                   CustomElevatedButton(
                     horizontal: 0,
                     backgroundColor: Colors.white,
-                    onPressed: () {},
+                    onPressed: () {
+
+                    },
                     child: Image.asset(
                       ImageUtility.google,
                       width: 30,

@@ -15,6 +15,7 @@ class Course {
   DateTime? createdDate;
   Instructor? instructor;
   Category? category;
+  bool isExpanded;
 
   Course({
     this.id,
@@ -29,6 +30,7 @@ class Course {
     this.category,
     required this.rank,
     this.createdDate,
+    this.isExpanded=false,
   });
 
   factory Course.fromJson(Map<String, dynamic> json) {

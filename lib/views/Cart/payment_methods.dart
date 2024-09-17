@@ -71,9 +71,13 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
             isExpanded = !isExpanded;
           });
           await accessingToPayMobGate(context);
-          await LauncherUrl(Uri.parse(
-              'blob:https://accept.paymob.com/d1f041af-a383-4982-ba18-1cc67641da61'));
-        },
+          const url = 'blob:https://accept.paymob.com/d1f041af-a383-4982-ba18-1cc67641da61';
+          if (await canLaunchUrl(Uri.parse(url))) {
+            await launchUrl(Uri.parse(url));
+          } else {
+            throw 'Could not launch $url';
+          }
+        }
       ),
     );
   }
@@ -105,7 +109,5 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
     }
   }
 
-  LauncherUrl(Uri parse) {
-    launchUrl(parse);
-  }
+
 }
